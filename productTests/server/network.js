@@ -186,5 +186,35 @@ exports.deleteProductTests = async (testResultId) => {
   }
 }
 
+exports.getHistoryForKey = async (testResultId) => {
+  try {
+    const wallet = getWallet();
+    const exists = await wallet.exists(userName);
+
+    if (!exists) {
+      console.log(`An identity for the user ${userName} does not exist in the wallet`);
+      return;
+    }
+
+    // Get the contract from the network.
+    const gateway = new Gateway();
+    await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
+    const network = await gateway.getNetwork('mychannel');
+    const contract = network.getContract('productTests');
+
+    // Submit the specified transaction.
+    const result = await contract.submitTransaction('getHistoryForKey', testResultId);
+    console.log(`Transaction has been submitted:\n ${result}`);
+
+    // Disconnect from the gateway.
+    await gateway.disconnect();
+
+    return result;
+
+  } catch (error) {
+    console.error(`Failed to submit transaction: ${error}`);
+  }  
+}
+
 
 

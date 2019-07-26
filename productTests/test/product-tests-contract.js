@@ -105,4 +105,18 @@ describe('ProductTestsContract', () => {
 
     });
 
+
+    describe('#getHistoryForKey', () => {
+
+        it('should show transaction history', async () => {
+            await contract.getHistoryForKey(ctx, '1001');
+            ctx.stub.deleteState.should.have.been.calledOnceWithExactly('1001');
+        });
+
+        it('should throw an error for a product tests that does not exist', async () => {
+            await contract.getHistoryForKey(ctx, '1003').should.be.rejectedWith(/The product tests 1003 does not exist/);
+        });
+
+    });    
+
 });
