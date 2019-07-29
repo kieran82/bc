@@ -1,5 +1,5 @@
 {
-    "name": "productTests",
+    "name": "someProductTests",
     "version": "0.0.3",
     "description": "My Smart Contract",
     "main": "index.js",
@@ -18,7 +18,8 @@
     "license": "Apache-2.0",
     "dependencies": {
         "fabric-contract-api": "1.4.1",
-        "fabric-shim": "1.4.1"
+        "fabric-shim": "1.4.1",
+        "node-stringbuilder": "^2.2.4"
     },
     "devDependencies": {
         "chai": "^4.2.0",
