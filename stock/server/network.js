@@ -25,7 +25,7 @@ console.log(`Connection file is ${connection_file} `);
 /* ===============================  Test Methods ====================================== */
 // Common method to get a Wallet
 const getWallet = () => {
-  const walletPath = path.join(process.cwd(), '/wallet');
+  const walletPath = path.join(process.cwd(), '/local_fabric_wallet');
   const wallet = new FileSystemWallet(walletPath);
   console.log(`Wallet path: ${walletPath}`);
   return wallet;
@@ -48,7 +48,7 @@ exports.stockExists = async (stockId) => {
     // Get the contract from the network.
     const gateway = new Gateway();
     await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
-    const network = await gateway.getNetwork('channel1');
+    const network = await gateway.getNetwork('mychannel');
     const contract = network.getContract('stock');
 
     // Submit the specified transaction.
@@ -79,7 +79,7 @@ exports.createStock = async (stockId, value) => {
     // Get the contract from the network.
     const gateway = new Gateway();
     await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
-    const network = await gateway.getNetwork('channel1');
+    const network = await gateway.getNetwork('mychannel');
     const contract = network.getContract('stock');
 
     // Submit the specified transaction.
@@ -110,7 +110,7 @@ exports.updateStock = async (stockId, value) => {
     // Get the contract from the network.
     const gateway = new Gateway();
     await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
-    const network = await gateway.getNetwork('channel1');
+    const network = await gateway.getNetwork('mychannel');
     const contract = network.getContract('stock');
 
     await contract.submitTransaction('updateStock', stockId, value);
@@ -141,7 +141,7 @@ exports.readStock = async (stockId) => {
     // Get the contract from the network.
     const gateway = new Gateway();
     await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
-    const network = await gateway.getNetwork('channel1');
+    const network = await gateway.getNetwork('mychannel');
     const contract = network.getContract('stock');
 
     // Submit the specified transaction.
@@ -171,7 +171,7 @@ exports.deleteStock = async (stockId) => {
     // Get the contract from the network.
     const gateway = new Gateway();
     await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
-    const network = await gateway.getNetwork('channel1');
+    const network = await gateway.getNetwork('mychannel');
     const contract = network.getContract('stock');
 
     // Submit the specified transaction.
@@ -180,6 +180,35 @@ exports.deleteStock = async (stockId) => {
 
     // Disconnect from the gateway.
     await gateway.disconnect();
+
+  } catch (error) {
+    console.error(`Failed to submit transaction: ${error}`);
+  }
+}
+
+exports.getHistoryForKey = async (testResultId) => {
+  try {
+    const wallet = getWallet();
+    const exists = await wallet.exists(userName);
+
+    if (!exists) {
+      console.log(`An identity for the user ${userName} does not exist in the wallet`);
+      return;
+    }
+
+    // Get the contract from the network.
+    const gateway = new Gateway();
+    await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
+    const network = await gateway.getNetwork('mychannel');
+    const contract = network.getContract('stock');
+
+    // Submit the specified transaction.
+    const result = await contract.submitTransaction('getHistoryForKey', testResultId);
+
+    // Disconnect from the gateway.
+    await gateway.disconnect();
+
+    return result;
 
   } catch (error) {
     console.error(`Failed to submit transaction: ${error}`);

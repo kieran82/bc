@@ -1,6 +1,6 @@
 {
     "name": "stock",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "My Smart Contract",
     "main": "index.js",
     "engines": {
@@ -19,7 +19,8 @@
     "dependencies": {
         "fabric-contract-api": "1.4.1",
         "fabric-network": "^1.4.4",
-        "fabric-shim": "1.4.1"
+        "fabric-shim": "1.4.1",
+        "node-stringbuilder": "^2.2.4"
     },
     "devDependencies": {
         "chai": "^4.2.0",
