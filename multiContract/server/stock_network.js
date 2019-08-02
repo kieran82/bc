@@ -32,13 +32,13 @@ const getWallet = () => {
 
 }
 
-exports.productTestsExists = async (testResultId) => {
+exports.stockExists = async (stockId) => {
 
   try {
     const wallet = getWallet();
     const exists = await wallet.exists(userName);
 
-    console.log(`This is the stock ID ${testResultId}`);
+    console.log(`This is the stock ID ${stockId}`);
 
     if (!exists) {
       console.log(`An identity for the user ${userName} does not exist in the wallet`);
@@ -49,27 +49,27 @@ exports.productTestsExists = async (testResultId) => {
     const gateway = new Gateway();
     await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
     const network = await gateway.getNetwork('mychannel');
-    const contract = network.getContract('someProductTests');
+    const contract = network.getContract('stock');
 
     // Submit the specified transaction.
-    const retVal = await contract.submitTransaction('productTestsExists', testResultId);
+    const retVal = await contract.submitTransaction('stockExists', stockId);
     console.log(`Return value is ${retVal}`);
 
     // Disconnect from the gateway.
     await gateway.disconnect();
 
   } catch (error) {
-    console.error(`Failed to submit Product Test transaction: ${error}`);
+    console.error(`Failed to submit Stock transaction: ${error}`);
   }
 
 }
 
-exports.createProductTests = async (testResultId, value) => {
+exports.createStock = async (stockId, value) => {
   try {
     const wallet = getWallet();
     const exists = await wallet.exists(userName);
 
-    console.log(`This is the test ID ${testResultId}`);
+    console.log(`This is the stock ID ${stockId}`);
     
     if (!exists) {
       console.log(`An identity for the user ${userName} does not exist in the wallet`);
@@ -80,27 +80,27 @@ exports.createProductTests = async (testResultId, value) => {
     const gateway = new Gateway();
     await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
     const network = await gateway.getNetwork('mychannel');
-    const contract = network.getContract('someProductTests');
+    const contract = network.getContract('stock');
 
     // Submit the specified transaction.
-    await contract.submitTransaction('createProductTests', testResultId, value);
-    console.log(`Product Test transaction has been submitted`);
+    await contract.submitTransaction('createStock', stockId, value);
+    console.log(`Stock transaction has been submitted`);
 
     // Disconnect from the gateway.
     await gateway.disconnect();
 
   } catch (error) {
-    console.error(`Failed to submit Product Test transaction: ${error}`);
+    console.error(`Failed to submit Stock transaction: ${error}`);
   }
 }
 
-exports.updateProductTests = async (testResultId, value) => {
+exports.updateStock = async (stockId, value) => {
   try {
 
     const wallet = getWallet();
     const exists = await wallet.exists(userName);
 
-    console.log(`This is the stock ID ${testResultId}`);
+    console.log(`This is the stock ID ${stockId}`);
 
     if (!exists) {
       console.log(`An identity for the user ${userName} does not exist in the wallet`);
@@ -111,9 +111,9 @@ exports.updateProductTests = async (testResultId, value) => {
     const gateway = new Gateway();
     await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
     const network = await gateway.getNetwork('mychannel');
-    const contract = network.getContract('someProductTests');
+    const contract = network.getContract('stock');
 
-    await contract.submitTransaction('updateProductTests', testResultId, value);
+    await contract.submitTransaction('updateStock', stockId, value);
     console.log('Transaction has been submitted');
 
     // Disconnect from the gateway.
@@ -124,14 +124,14 @@ exports.updateProductTests = async (testResultId, value) => {
   }
 }
 
-exports.readProductTests = async (testResultId) => {
+exports.readStock = async (stockId) => {
 
   try {
 
     const wallet = getWallet();
     const exists = await wallet.exists(userName);
 
-    console.log(`This is the stock ID ${testResultId}`);
+    console.log(`This is the stock ID ${stockId}`);
 
     if (!exists) {
       console.log(`An identity for the user ${userName} does not exist in the wallet`);
@@ -142,10 +142,10 @@ exports.readProductTests = async (testResultId) => {
     const gateway = new Gateway();
     await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
     const network = await gateway.getNetwork('mychannel');
-    const contract = network.getContract('someProductTests');
+    const contract = network.getContract('stock');
 
     // Submit the specified transaction.
-    const result = await contract.evaluateTransaction('readProductTests', testResultId);
+    const result = await contract.evaluateTransaction('readStock', stockId);
     console.log(`Transaction has been submitted:\n ${result}`);
 
     // Disconnect from the gateway.
@@ -158,7 +158,7 @@ exports.readProductTests = async (testResultId) => {
   }
 }
 
-exports.deleteProductTests = async (testResultId) => {
+exports.deleteStock = async (stockId) => {
   try {
     const wallet = getWallet();
     const exists = await wallet.exists(userName);
@@ -172,11 +172,11 @@ exports.deleteProductTests = async (testResultId) => {
     const gateway = new Gateway();
     await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
     const network = await gateway.getNetwork('mychannel');
-    const contract = network.getContract('someProductTests');
+    const contract = network.getContract('stock');
 
     // Submit the specified transaction.
-    await contract.submitTransaction('deleteProductTests', testResultId);
-    console.log(`Stock item ${testResultId} has been deleted`);
+    await contract.submitTransaction('deleteStock', stockId);
+    console.log(`Stock item ${stockId} has been deleted`);
 
     // Disconnect from the gateway.
     await gateway.disconnect();
@@ -200,11 +200,10 @@ exports.getHistoryForKey = async (testResultId) => {
     const gateway = new Gateway();
     await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
     const network = await gateway.getNetwork('mychannel');
-    const contract = network.getContract('someProductTests');
+    const contract = network.getContract('stock');
 
     // Submit the specified transaction.
     const result = await contract.submitTransaction('getHistoryForKey', testResultId);
-    // console.log(`Transaction has been submitted:\n ${result}`);
 
     // Disconnect from the gateway.
     await gateway.disconnect();
@@ -213,7 +212,7 @@ exports.getHistoryForKey = async (testResultId) => {
 
   } catch (error) {
     console.error(`Failed to submit transaction: ${error}`);
-  }  
+  }
 }
 
 

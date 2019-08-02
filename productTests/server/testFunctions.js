@@ -16,40 +16,40 @@ const testIn =
   testResultId: 'T103',
   docType: 'testResult',
   client: 'Shanagarry',
-  stockId: '133',
-  result: 'Safely does it boyo'
+  stockId: '1335',
+  result: 'Safe'
   };
 
-// const testy = async () => {
+const testy = async () => {
 
-//   const res = await network.getHistoryForKey(testIn.testResultId);
+  const res = await network.getHistoryForKey(testIn.testResultId);
 
-//   let allResults = "";
-//   const js = JSON.parse(res);
-//   //Convert the array of ASCII values into a character string
-//   js.data.toString().split(',').forEach((s) => (sb.append(String.fromCharCode(parseInt(s, 10))))); 
-//   //Parse the string back into a JSON object
-//   const myJson = JSON.parse(sb.toString());
+  let allResults = "";
+  const js = JSON.parse(res);
+  //Convert the array of ASCII values into a character string
+  js.data.toString().split(',').forEach((s) => (sb.append(String.fromCharCode(parseInt(s, 10))))); 
+  //Parse the string back into a JSON object
+  const myJson = JSON.parse(sb.toString());
   
-//   //Now all items in the history object array can be accessed
-//   for (var myKey in myJson) {
-//     // console.log(myJson[myKey].Value);
-//     const dt = new Date(parseInt(myJson[myKey].Timestamp.seconds.low) * 1000);
-//     // console.log(myJson[myKey].Timestamp.seconds.low);
-//     console.log(dt.toISOString());
+  //Now all items in the history object array can be accessed
+  for (var myKey in myJson) {
+    // console.log(myJson[myKey].Value);
+    const dt = new Date(parseInt(myJson[myKey].Timestamp.seconds.low) * 1000);
+    // console.log(myJson[myKey].Timestamp.seconds.low);
+    console.log(dt.toISOString());
     
-//     console.log("--------------------------------------------------------------------");
+    console.log("--------------------------------------------------------------------");
     
-//   }
+  }
 
-// }
+}
 
-// testy();
+testy();
 
 
 // network.productTestsExists(testIn.testResultId)  ;
 
-network.createProductTests(testIn.testResultId, JSON.stringify(testIn));
+// network.createProductTests(testIn.testResultId, JSON.stringify(testIn));
 
 // network.updateProductTests(testIn.testResultId, JSON.stringify(testIn));
 

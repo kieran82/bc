@@ -70,7 +70,7 @@ exports.createProductTests = async (testResultId, value) => {
     const exists = await wallet.exists(userName);
 
     console.log(`This is the test ID ${testResultId}`);
-    
+
     if (!exists) {
       console.log(`An identity for the user ${userName} does not exist in the wallet`);
       return;
@@ -213,8 +213,7 @@ exports.getHistoryForKey = async (testResultId) => {
 
   } catch (error) {
     console.error(`Failed to submit transaction: ${error}`);
-  }  
+  }
 }
-
 
 
