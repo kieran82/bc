@@ -2,33 +2,36 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-'use strict';
+"use strict";
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-const network = require('./network');
+const network = require("./network");
 
 const order = 
   {
-    orderId: '1005',
-    docType: 'foodOrder',
-    despatchDate: '2019-07-20',
-    dateReceived: '2019-07-20',
-    buyerId: '1001',
-    quantity: '750',
-    qtyUnitMeasurement: 'Kg',
-    processUsed: 'Smoking',
-    orderLines: [
-      { orderLine: '1', sourceBatchId: '101', tested: 'Yes', quantity: '500', qtyUnitMeasurement: 'Kg' },
-      { orderLine: '2', sourceBatchId: '102', tested: 'Yes', quantity: '250', qtyUnitMeasurement: 'Kg' },
+    "orderId": "1007",
+    "docType": "foodOrder",
+    "despatchDate": "2019-07-20",
+    "dateReceived": "2019-07-20",
+    "buyerId": "1001",
+    "quantity": 750,
+    "qtyUnitMeasurement": "Kg",
+    "processUsed": "Smoking Dude",
+    "orderLines": [
+      {
+      "orderLine": 1, "sourceBatchId": "101", "tested": "Yes", "quantity": 500, "qtyUnitMeasurement": "Kg" },
+      { "orderLine": 2, "sourceBatchId": "102", "tested": "Yes", "quantity": 250, "qtyUnitMeasurement": "Kg" },
     ],
   };
 
-// network.foodSupplyAssetExists("1005")  ;
+// network.foodOrderExists("1001")  ;
 
 // network.createOrder(order.orderId, JSON.stringify(order));
 
 // network.updateOrder(order.orderId, JSON.stringify(order));
 
-// network.deleteOrder("1005");
+// network.readOrder(order.orderId);
+
+network.deleteOrder("1001");
