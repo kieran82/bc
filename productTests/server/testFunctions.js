@@ -17,7 +17,7 @@ const testIn =
   docType: 'testResult',
   client: 'Shanagarry',
   stockId: '1335',
-  result: 'Safe'
+  result: 'Well what do you know'
   };
 
 const testy = async () => {
@@ -55,4 +55,4 @@ testy();
 
 // network.readProductTests(testIn.testResultId);
 
-// network.deleteProductTests(testIn.testResultId);
+// network.deleteProductTests("T101");
