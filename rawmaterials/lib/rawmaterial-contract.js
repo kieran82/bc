@@ -129,15 +129,12 @@ class RawmaterialContract extends Contract {
         const exists = await this.rawmaterialExists(ctx, rawmaterialId);
 
         if (!exists) {
-            throw new Error(`The product tests ${rawmaterialId} does not exist`);
+            throw new Error(`The raw mateial item for ${rawmaterialId} does not exist`);
         }
 
         let resultsIterator = await ctx.stub.getHistoryForKey(rawmaterialId);
-        // let method = thisClass['getAllResults'];
         let results = await this.getAllResults(resultsIterator, true);
 
-        // const buffer = await ctx.stub.getHistoryForKey(rawmaterialId);      
-        // const asset = JSON.parse(buffer.toString());
         return Buffer.from(JSON.stringify(results));
     }    
 

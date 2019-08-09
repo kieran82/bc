@@ -22,8 +22,12 @@ const batchContract =
 
 const stockContract =
 {
-  batchId: '104'
+  batchId: '101'
 };  
+
+const orderContract = {
+  orderId: '1005'
+};
 
 const testIn =
 {
@@ -64,13 +68,13 @@ const rawmaterialsTest = async () => {
 
 const stockTest = async () => {
   const sb = new StringBuilder();
-  const res = await tests.getHistoryForKey(testIn.testResultId);
+  const res = await stock.getHistoryForKey(stockContract.batchId);
 
   let allResults = "";
   const js = JSON.parse(res);
   js.data.toString().split(',').forEach((s) => (sb.append(String.fromCharCode(parseInt(s, 10)))));
   const myJson = JSON.parse(sb.toString());
-  console.log(myJson);
+  // console.log(myJson);
   console.log("--------------------------------------------------------------------");
 
 
@@ -114,7 +118,33 @@ const testTest = async () => {
 
 } 
 
+const orderTest = async () => {
+  const sb = new StringBuilder();
+  const res = await orders.getHistoryForKey(orderContract.orderId);
 
+  let allResults = "";
+  const js = JSON.parse(res);
+  js.data.toString().split(',').forEach((s) => (sb.append(String.fromCharCode(parseInt(s, 10)))));
+  const myJson = JSON.parse(sb.toString());
+  console.log(myJson);
+  console.log("--------------------------------------------------------------------");
+
+
+  //Now all items in the history object array can be accessed
+  for (var myKey in myJson) {
+    // console.log(myKey);
+    console.log(myJson[myKey].TxId);
+    const dt = new Date(parseInt(myJson[myKey].Timestamp.seconds.low) * 1000);
+    console.log(myJson[myKey].Value);
+    console.log(`Date: ${dt.toISOString()} ${myJson[myKey].Timestamp.nanos}`);
+
+    console.log("--------------------------------------------------------------------");
+
+  }
+
+} 
+
+// orderTest();
 
 // rawmaterialsTest();
 stockTest();

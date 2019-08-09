@@ -15,7 +15,7 @@ const rawMaterialIn =
   {
     batchId: '1003',
     docType: 'materials',
-    certified: 'Ya baby!!!!!!',
+    certified: 'Yes Infant Little Person!!!!!!',
     supplierId: '0001',
     quantity: '150',
     qtyUnitMeasurement: 'Kg',
