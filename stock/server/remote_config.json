@@ -1,10 +1,10 @@
 {
-  "connection_file": "channel1_stock_profile.json",
+  "connection_file": "mychannel_stock_profile.json",
   "appAdmin": "app-admin",
   "appAdminSecret": "app-adminpw",
   "orgMSPID": "org1msp",
-  "caName": "n3bcf14-org1ca.mycluster-695126.eu-de.containers.appdomain.cloud:7054",
-  "userName": "user4",
+  "caName": "184.172.253.228:30001",
+  "userName": "User1@org1.example.com",
   "gatewayDiscovery": {
     "enabled": true,
     "asLocalhost": false

@@ -1,0 +1,142 @@
+{
+  "gateway": "01290218SKY05CF",
+  "success": true,
+  "data": {
+    "version": 0,
+    "timestamp": 1567671084,
+    "devices": [
+      {
+        "sensors": [
+          {
+            "type_id": 0,
+            "type": "TEMP",
+            "reading": 0.0
+          },
+          {
+            "type_id": 1,
+            "type": "PH",
+            "reading": 0.0
+          },
+          {
+            "type_id": 2,
+            "type": "DISSOLVED OXYGEN",
+            "reading": 0.0
+          },
+          {
+            "type_id": 3,
+            "type": "BATTERY VOLTAGE",
+            "reading": 10.800000190734863
+          },
+          {
+            "type_id": 4,
+            "type": "DAYLIGHT START",
+            "reading": 0
+          },
+          {
+            "type_id": 5,
+            "type": "DAYLIGHT END",
+            "reading": 0
+          },
+          {
+            "type_id": 6,
+            "type": "SOLAR VOLTAGE",
+            "reading": 10.949999809265137
+          }
+        ],
+        "device_id": 0,
+        "gps": {
+          "latitude": 51.501583099365234,
+          "longitude": -9.59123706817627
+        }
+      },
+      {
+        "sensors": [
+          {
+            "type_id": 0,
+            "type": "TEMP",
+            "reading": 12.253000259399414
+          },
+          {
+            "type_id": 1,
+            "type": "PH",
+            "reading": 0.0
+          },
+          {
+            "type_id": 2,
+            "type": "DISSOLVED OXYGEN",
+            "reading": 17.6299991607666
+          },
+          {
+            "type_id": 3,
+            "type": "BATTERY VOLTAGE",
+            "reading": 12.105592727661133
+          },
+          {
+            "type_id": 4,
+            "type": "DAYLIGHT START",
+            "reading": 1567663233
+          },
+          {
+            "type_id": 5,
+            "type": "DAYLIGHT END",
+            "reading": 1567641646
+          },
+          {
+            "type_id": 6,
+            "type": "SOLAR VOLTAGE",
+            "reading": 13.528007507324219
+          }
+        ],
+        "device_id": 1,
+        "gps": {
+          "latitude": 51.502769470214844,
+          "longitude": -9.588587760925293
+        }
+      },
+      {
+        "sensors": [
+          {
+            "type_id": 0,
+            "type": "TEMP",
+            "reading": 0.0
+          },
+          {
+            "type_id": 1,
+            "type": "PH",
+            "reading": 0.0
+          },
+          {
+            "type_id": 2,
+            "type": "DISSOLVED OXYGEN",
+            "reading": 0.0
+          },
+          {
+            "type_id": 3,
+            "type": "BATTERY VOLTAGE",
+            "reading": 11.982067108154297
+          },
+          {
+            "type_id": 4,
+            "type": "DAYLIGHT START",
+            "reading": 1567595788
+          },
+          {
+            "type_id": 5,
+            "type": "DAYLIGHT END",
+            "reading": 0
+          },
+          {
+            "type_id": 6,
+            "type": "SOLAR VOLTAGE",
+            "reading": 13.508221626281738
+          }
+        ],
+        "device_id": 2,
+        "gps": {
+          "latitude": 51.503143310546875,
+          "longitude": -9.589471817016602
+        }
+      }
+    ]
+  }
+}

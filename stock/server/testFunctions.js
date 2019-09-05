@@ -13,16 +13,26 @@ const sb = new StringBuilder();
 
 const stockIn = 
   {
-  stockId: '104',
+  stockId: '103',
   docType: 'stockLevel',
   sourcestockId: 1001,
   supplierId: '0001',
-  addedNewField: 'Hi There!!',
-  sourceBatchQuantity: 1000,
+  addedNewField: 'Stock Record 103 updated again',
+  sourceBatchQuantity: 166,
   qtyUnitMeasurement: 'Kg',
-  dateProcessed: '2019-07-08',
-  testResultId: '20190710',
+  dateProcessed: '2019-08-18',
+  testResultId: '20190818',
   };
+
+// const testIn =
+// {
+//   testResultId: 'T103',
+//   docType: 'testResult',
+//   client: 'Shanagarrydo',
+//   typeOfTest: 'micro',
+//   result: '12345'
+// };
+
 
 const testy = async () => {
 
@@ -37,7 +47,31 @@ const testy = async () => {
 
   //Now all items in the history object array can be accessed
   for (var myKey in myJson) {
-    // console.log(myJson[myKey].Value);
+    console.log(myJson[myKey].Value);
+    const dt = new Date(parseInt(myJson[myKey].Timestamp.seconds.low) * 1000);
+    // console.log(myJson[myKey].Timestamp.seconds.low);
+    console.log(dt.toISOString());
+
+    console.log("--------------------------------------------------------------------");
+
+  }
+
+}
+
+const testytesty = async () => {
+
+  const res = await network.getHistoryForKey(testIn.testResultId);
+
+  let allResults = "";
+  const js = JSON.parse(res);
+  //Convert the array of ASCII values into a character string
+  js.data.toString().split(',').forEach((s) => (sb.append(String.fromCharCode(parseInt(s, 10)))));
+  //Parse the string back into a JSON object
+  const myJson = JSON.parse(sb.toString());
+
+  //Now all items in the history object array can be accessed
+  for (var myKey in myJson) {
+    console.log(myJson[myKey].Value);
     const dt = new Date(parseInt(myJson[myKey].Timestamp.seconds.low) * 1000);
     // console.log(myJson[myKey].Timestamp.seconds.low);
     console.log(dt.toISOString());
@@ -56,6 +90,8 @@ testy();
 
 // network.updateStock(stockIn.stockId, JSON.stringify(stockIn));
 
-// network.readStock(stockIn.stockId);
+network.readStock(stockIn.stockId);
 
-// network.deleteStock(stockIn.stockId);
+// network.deleteStock("T103");
+
+// network.updateProductTests(testIn.testResultId, JSON.stringify(testIn));

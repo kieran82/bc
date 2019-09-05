@@ -1,5 +1,5 @@
 {
-  "name": "orders",
+  "name": "stock",
   "version": "0.0.3",
   "description": "My Smart Contract",
   "main": "index.js",
@@ -17,23 +17,16 @@
   "author": "John Doe",
   "license": "Apache-2.0",
   "dependencies": {
-    "fabric-ca-client": "^1.4.4",
     "fabric-contract-api": "1.4.1",
-    "fabric-network": "^1.4.4",
-    "fabric-shim": "1.4.1",
-    "node-stringbuilder": "^2.2.4"
+    "fabric-shim": "1.4.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "chai-as-promised": "^7.1.1",
     "eslint": "^5.9.0",
-    "fabric-client": "^1.4.4",
-    "fabric-network": "^1.4.4",
     "mocha": "^5.2.0",
     "nyc": "^14.0.0",
     "sinon": "^7.1.1",
-    "sinon-chai": "^3.3.0",
-    "winston": "^3.2.1"
+    "sinon-chai": "^3.3.0"
   },
   "nyc": {
     "exclude": [

@@ -12,13 +12,13 @@ const sb = new StringBuilder();
 const network = require('./network');
 
 const testIn = 
-  {
+{
   testResultId: 'T103',
   docType: 'testResult',
   client: 'Shanagarry',
-  stockId: '1335',
-  result: 'Well what do you know'
-  };
+  typeOfTest: 'micro',
+  result: '12345'
+};
 
 const testy = async () => {
 
@@ -44,7 +44,7 @@ const testy = async () => {
 
 }
 
-testy();
+// testy();
 
 
 // network.productTestsExists(testIn.testResultId)  ;
@@ -53,6 +53,6 @@ testy();
 
 // network.updateProductTests(testIn.testResultId, JSON.stringify(testIn));
 
-// network.readProductTests(testIn.testResultId);
+network.readProductTests(testIn.testResultId);
 
 // network.deleteProductTests("T101");

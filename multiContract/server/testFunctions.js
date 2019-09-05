@@ -144,17 +144,15 @@ const orderTest = async () => {
 
 } 
 
-// orderTest();
-
-// rawmaterialsTest();
+orderTest();
+testTest();
+rawmaterialsTest();
 stockTest();
-// stock.readStock("104");
+stock.readStock("104");
 
 // network.batchExists("1001")  ;
 
 // rawmaterials.rawMaterialExists("1003");
-
-
 
 // network.createBatch(batchContract.batchId, JSON.stringify(batchContract));
 

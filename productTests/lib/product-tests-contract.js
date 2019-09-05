@@ -16,15 +16,15 @@ class ProductTestsContract extends Contract {
                 testResultId: 'T101',
                 docType: 'testResult',
                 client: 'Shanagarry',
-                stockId: 101,
-                result: 'Safe'
+                typeOfTest: 'micro',
+                result: '123'
             },
             {
                 testResultId: 'T102',
                 docType: 'testResult',
-                client: 'Shanagarry',
-                stockId: 102,
-                result: 'Safe'
+                client: 'GarryShanny',
+                typeOfTest: 'fungal',
+                result: '123'
             },
         ];
 
