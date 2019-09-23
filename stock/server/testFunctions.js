@@ -13,15 +13,15 @@ const sb = new StringBuilder();
 
 const stockIn = 
   {
-  stockId: '103',
+  stockId: '104',
   docType: 'stockLevel',
   sourcestockId: 1001,
   supplierId: '0001',
-  addedNewField: 'Stock Record 103 updated again',
-  sourceBatchQuantity: 166,
+  addedNewField: 'Stock Record 104 updated',
+  sourceBatchQuantity: 186,
   qtyUnitMeasurement: 'Kg',
-  dateProcessed: '2019-08-18',
-  testResultId: '20190818',
+  dateProcessed: '2019-09-18',
+  testResultId: '20190918',
   };
 
 // const testIn =
@@ -90,7 +90,7 @@ testy();
 
 // network.updateStock(stockIn.stockId, JSON.stringify(stockIn));
 
-network.readStock(stockIn.stockId);
+// network.readStock(stockIn.stockId);
 
 // network.deleteStock("T103");
 

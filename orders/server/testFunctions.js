@@ -13,18 +13,18 @@ const network = require("./network");
 
 const order = 
   {
-    "orderId": "1005",
+    "orderId": "1003",
     "docType": "foodOrder",
-    "despatchDate": "2019-07-20",
-    "dateReceived": "2019-07-20",
+    "despatchDate": "2019-09-20",
+    "dateReceived": "2019-09-20",
     "buyerId": "1001",
-    "quantity": 752,
+    "quantity": 750,
     "qtyUnitMeasurement": "Kg",
-    "processUsed": "Smoking Hot Dude",
+    "processUsed": "Smokin Hot",
     "orderLines": [
       {
-      "orderLine": 1, "sourceorderId": "101", "tested": "Yes", "quantity": 500, "qtyUnitMeasurement": "Kg" },
-      { "orderLine": 2, "sourceorderId": "102", "tested": "Yes", "quantity": 250, "qtyUnitMeasurement": "Kg" },
+      "orderLine": 1, "sourceorderId": "101", "tested": "Yes", "quantity": 510, "qtyUnitMeasurement": "Kg" },
+      { "orderLine": 2, "sourceorderId": "102", "tested": "Yes", "quantity": 217, "qtyUnitMeasurement": "Kg" },
     ],
   };
 
@@ -41,7 +41,7 @@ const testy = async () => {
 
   //Now all items in the history object array can be accessed
   for (var myKey in myJson) {
-    // console.log(myJson[myKey].Value);
+    console.log(myJson[myKey].Value);
     const dt = new Date(parseInt(myJson[myKey].Timestamp.seconds.low) * 1000);
     // console.log(myJson[myKey].Timestamp.seconds.low);
     console.log(dt.toISOString());
