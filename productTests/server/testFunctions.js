@@ -17,7 +17,7 @@ const testIn =
   docType: 'testResult',
   client: 'Shanagarry',
   typeOfTest: 'micro',
-  result: '12345'
+  result: '1234567'
 };
 
 const testy = async () => {
@@ -33,7 +33,7 @@ const testy = async () => {
   
   //Now all items in the history object array can be accessed
   for (var myKey in myJson) {
-    // console.log(myJson[myKey].Value);
+    console.log(myJson[myKey].Value);
     const dt = new Date(parseInt(myJson[myKey].Timestamp.seconds.low) * 1000);
     // console.log(myJson[myKey].Timestamp.seconds.low);
     console.log(dt.toISOString());
@@ -44,15 +44,15 @@ const testy = async () => {
 
 }
 
-// testy();
+testy();
 
 
-// network.productTestsExists(testIn.testResultId)  ;
+// network.productTestsExists("T101")  ;
 
 // network.createProductTests(testIn.testResultId, JSON.stringify(testIn));
 
 // network.updateProductTests(testIn.testResultId, JSON.stringify(testIn));
 
-network.readProductTests(testIn.testResultId);
+// network.readProductTests(testIn.testResultId);
 
 // network.deleteProductTests("T101");
