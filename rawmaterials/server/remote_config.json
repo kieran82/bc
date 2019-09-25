@@ -1,10 +1,10 @@
 {
-  "connection_file": "channel1_rawmaterials_profile.json",
+  "connection_file": "mychannel_rawmaterials_profile.json",
   "appAdmin": "app-admin",
   "appAdminSecret": "app-adminpw",
   "orgMSPID": "org1msp",
-  "caName": "n3bcf14-org1ca.mycluster-695126.eu-de.containers.appdomain.cloud:7054",
-  "userName": "user3",
+  "caName": "n29a8bc-org1ca.mycluster-677965.eu-de.containers.appdomain.cloud:7054",
+  "userName": "User1@org1.example.com",
   "gatewayDiscovery": {
     "enabled": true,
     "asLocalhost": false

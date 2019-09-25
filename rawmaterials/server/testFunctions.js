@@ -15,12 +15,12 @@ const rawMaterialIn =
   {
     batchId: '1003',
     docType: 'materials',
-    certified: 'Yes Infant Little Person!!!!!!',
+    certified: 'Yes',
     supplierId: '0001',
-    quantity: '150',
+    quantity: '144',
     qtyUnitMeasurement: 'Kg',
-    product: 'Organically Salmony and stuff',
-    dateReceived: '2019-07-17',
+    product: 'Organic Salmon',
+    dateReceived: '2019-08-17',
   };
 
 const testy = async () => {
@@ -36,7 +36,7 @@ const testy = async () => {
 
   //Now all items in the history object array can be accessed
   for (var myKey in myJson) {
-    // console.log(myJson[myKey].Value);
+    console.log(myJson[myKey].Value);
     const dt = new Date(parseInt(myJson[myKey].Timestamp.seconds.low) * 1000);
     // console.log(myJson[myKey].Timestamp.seconds.low);
     console.log(dt.toISOString());
