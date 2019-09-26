@@ -16,13 +16,13 @@ const network = require('./network');
 
 const rawMaterial =
 {
-  batchId: '1014',
+  batchId: '1015',
   docType: 'materials',
   certified: 'Maybe',
   supplierId: '0001',
   quantity: 1000,
   qtyUnitMeasurement: 'Kg',
-  product: 'Organically Salmony',
+  product: 'Organically Salmony perhaps',
   dateReceived: '2019-07-07'
 };
 
@@ -68,7 +68,7 @@ const testResults =
 //Arbitrary object used to store a generic ID for search purposes
 
 /** Check for Existence */
-network.keyExists('stock', 'stockExists', newStock.stockId);
+// network.keyExists('stock', 'stockExists', newStock.stockId);
 
 // network.keyExists('rawmaterials', 'rawmaterialExists', rawMaterial.batchId);
 
@@ -143,7 +143,7 @@ const getHistory = async (contractName, func, keyID) => {
 
 }
 
-// getHistory('rawmaterials', 'getHistoryForKey', rawMaterial.batchId);
+getHistory('rawmaterials', 'getHistoryForKey', rawMaterial.batchId);
 
 // getHistory('stock', 'getHistoryForKey', newStock.stockId);
 
