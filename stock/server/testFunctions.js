@@ -13,7 +13,7 @@ const sb = new StringBuilder();
 
 const stockIn = 
   {
-  stockId: '104',
+  stockId: '103',
   docType: 'stockLevel',
   sourcestockId: 1001,
   supplierId: '0001',
@@ -82,7 +82,7 @@ const testytesty = async () => {
 
 }
 
-testy();
+// testy();
 
 // network.stockExists(stockIn.stockId)  ;
 
@@ -95,3 +95,27 @@ testy();
 // network.deleteStock("T103");
 
 // network.updateProductTests(testIn.testResultId, JSON.stringify(testIn));
+
+/** Range Queries */
+
+const getRange = async (startId, endId) => {
+
+  const res = await network.getStateByRange(startId, endId); //
+  const result = JSON.parse(res);
+  
+  result.data.toString().split(',').forEach((s) => (sb.append(String.fromCharCode(parseInt(s, 10))))); 
+  const myJson = JSON.parse(sb.toString());
+
+  // Now all items in the history object array can be accessed
+  for (var myKey in myJson) {
+    console.log("--------------------------------------------------------------------");
+
+    console.log(myJson[myKey].Value);
+
+    console.log("--------------------------------------------------------------------");
+
+  }
+
+}
+
+getRange('102', '104');

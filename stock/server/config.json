@@ -1,12 +1,13 @@
 {
-  "connection_file": "mychannel_stock_profile.json",
+  "connection_file": "local_fabric_connection.json",
   "appAdmin": "app-admin",
   "appAdminSecret": "app-adminpw",
-  "orgMSPID": "org1msp",
-  "caName": "n29a8bc-org1ca.mycluster-677965.eu-de.containers.appdomain.cloud:7054",
+  "orgMSPID": "Org1MSP",
+  "caName": "ca.org1.example.com",
   "userName": "User1@org1.example.com",
+  "wallet": "/local_fabric_wallet",
+  "channel": "mychannel",  
   "gatewayDiscovery": {
-    "enabled": true,
-    "asLocalhost": false
+    "enabled": false
   }
 }

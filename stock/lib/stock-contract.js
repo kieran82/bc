@@ -82,6 +82,31 @@ class StockContract extends Contract {
         }
     }    
 
+    async getRangeResults(iterator) {
+        let allResults = [];
+        while (true) {
+            let res = await iterator.next();
+
+            if (res.value && res.value.value.toString()) {
+                let jsonRes = {};
+
+                jsonRes._id = res.value._id;
+                try {
+                    jsonRes.Value = JSON.parse(res.value.value.toString('utf8'));
+                } catch (err) {
+                    jsonRes.Value = res.value.value.toString('utf8');
+                }
+
+                allResults.push(jsonRes);
+            }
+
+            if (res.done) {
+                await iterator.close();
+                return allResults;
+            }
+        }
+    }        
+
     async stockExists(ctx, stockId) {
         const buffer = await ctx.stub.getState(stockId);
         return (!!buffer && buffer.length > 0);
@@ -125,6 +150,7 @@ class StockContract extends Contract {
         await ctx.stub.deleteState(stockId);
     }
 
+    /** Range Queries */
     async getHistoryForKey(ctx, stockId) {
         const exists = await this.stockExists(ctx, stockId);
 
@@ -133,11 +159,24 @@ class StockContract extends Contract {
         }
 
         let resultsIterator = await ctx.stub.getHistoryForKey(stockId);
-        // let method = thisClass['getAllResults'];
         let results = await this.getAllResults(resultsIterator, true);
 
         return Buffer.from(JSON.stringify(results));
     }    
+
+    async getStateByRange(ctx, startId, endId) {
+        const exists = await this.stockExists(ctx, startId);
+
+        if (!exists) {
+            throw new Error(`The Stock ID of ${startId} does not exist`);
+        }   
+        
+        let resultsIterator = await ctx.stub.getStateByRange(startId, endId);
+        let results = await this.getRangeResults(resultsIterator);    
+        
+        return results;
+        
+    }
 
 }
 

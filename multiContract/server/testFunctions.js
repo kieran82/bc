@@ -28,7 +28,7 @@ const rawMaterial =
 
 const newStock = 
   {
-    stockId: '114',
+    stockId: '102',
     docType: 'stockLevel',
     sourceBatchId: 1122,
     supplierId: '0001',
@@ -143,7 +143,7 @@ const getHistory = async (contractName, func, keyID) => {
 
 }
 
-getHistory('rawmaterials', 'getHistoryForKey', rawMaterial.batchId);
+// getHistory('rawmaterials', 'getHistoryForKey', rawMaterial.batchId);
 
 // getHistory('stock', 'getHistoryForKey', newStock.stockId);
 
@@ -151,3 +151,26 @@ getHistory('rawmaterials', 'getHistoryForKey', rawMaterial.batchId);
 
 // getHistory('ProductTests', 'getHistoryForKey', testResults.testResultId);
 
+/** Range Queries */
+
+const getStateByRange = async (contractName, func, startId, endId) => {
+
+  const res = await network.getStateByRange(contractName, func, startId, endId);
+  const result = JSON.parse(res);
+
+  result.data.toString().split(',').forEach((s) => (sb.append(String.fromCharCode(parseInt(s, 10)))));
+  const myJson = JSON.parse(sb.toString());
+
+  // Now all items in the history object array can be accessed
+  for (var myKey in myJson) {
+    console.log("--------------------------------------------------------------------");
+
+    console.log(myJson[myKey].Value);
+
+    console.log("--------------------------------------------------------------------");
+
+  }
+
+}
+
+getStateByRange('stock', 'getStateByRange', '102', '');
