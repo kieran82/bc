@@ -27,11 +27,31 @@ class StockContract extends Contract {
                 docType: 'stockLevel',
                 sourceBatchId: 1001,
                 supplierId: '0001',
-                sourceBatchQuantity: 100,
+                sourceBatchQuantity: 500,
                 qtyUnitMeasurement: 'Kg',
-                dateProcessed: '2019-07-08',
-                testResultId: '20190713',
+                dateProcessed: '2019-08-08',
+                testResultId: '20190813',
             },
+            {
+                stockId: '103',
+                docType: 'stockLevel',
+                sourceBatchId: 1002,
+                supplierId: '0001',
+                sourceBatchQuantity: 600,
+                qtyUnitMeasurement: 'Kg',
+                dateProcessed: '2019-09-08',
+                testResultId: '20190913',
+            },
+            {
+                stockId: '104',
+                docType: 'stockLevel',
+                sourceBatchId: 1003,
+                supplierId: '0001',
+                sourceBatchQuantity: 300,
+                qtyUnitMeasurement: 'Kg',
+                dateProcessed: '2019-10-01',
+                testResultId: '20191010',
+            },                        
         ];
 
         for (let i = 0; i < newStock.length; i++) {
@@ -112,13 +132,19 @@ class StockContract extends Contract {
         return (!!buffer && buffer.length > 0);
     }
 
+    /**
+     * 
+     * @param {Name of the contract} ctx 
+     * @param {The ID of the stock item} stockId 
+     * @param {The stock object as a JSON string} value 
+     */
     async createStock(ctx, stockId, value) {
         const exists = await this.stockExists(ctx, stockId);
         if (exists) {
             throw new Error(`The stock ${stockId} already exists`);
         }
-        const asset = { value };
-        const buffer = Buffer.from(JSON.stringify(asset));
+
+        const buffer = Buffer.from(value);
         await ctx.stub.putState(stockId, buffer);
     }
 
@@ -132,13 +158,18 @@ class StockContract extends Contract {
         return asset;
     }
 
+    /**
+     * 
+     * @param {Name of the contract} ctx
+     * @param {The ID of the stock item being updated} stockId
+     * @param {The new version of the stock object as a JSON string} value
+     */
     async updateStock(ctx, stockId, newValue) {
         const exists = await this.stockExists(ctx, stockId);
         if (!exists) {
             throw new Error(`The stock ${stockId} does not exist`);
         }
-        const asset = { value: newValue };
-        const buffer = Buffer.from(JSON.stringify(asset));
+        const buffer = Buffer.from(newValue);
         await ctx.stub.putState(stockId, buffer);
     }
 

@@ -13,15 +13,15 @@ const sb = new StringBuilder();
 
 const stockIn = 
   {
-  stockId: '103',
+  stockId: '106',
   docType: 'stockLevel',
   sourcestockId: 1001,
   supplierId: '0001',
-  addedNewField: 'Stock Record 104 updated',
-  sourceBatchQuantity: 186,
+  addedNewField: 'Stock Record 106 has been created',
+  sourceBatchQuantity: 1816,
   qtyUnitMeasurement: 'Kg',
-  dateProcessed: '2019-09-18',
-  testResultId: '20190918',
+  dateProcessed: '2019-10-01',
+  testResultId: '20191001',
   };
 
 // const testIn =
@@ -102,15 +102,15 @@ const getRange = async (startId, endId) => {
 
   const res = await network.getStateByRange(startId, endId); //
   const result = JSON.parse(res);
+  // console.log(result);
   
-  result.data.toString().split(',').forEach((s) => (sb.append(String.fromCharCode(parseInt(s, 10))))); 
-  const myJson = JSON.parse(sb.toString());
+  // result.Value.split(',').forEach((s) => (sb.append(String.fromCharCode(parseInt(s, 10))))); 
+  // const myJson = JSON.parse(sb.toString());
 
   // Now all items in the history object array can be accessed
-  for (var myKey in myJson) {
-    console.log("--------------------------------------------------------------------");
-
-    console.log(myJson[myKey].Value);
+  console.log("--------------------------------------------------------------------");  
+  for (var myKey in result) {
+    console.log(result[myKey].Value);
 
     console.log("--------------------------------------------------------------------");
 
@@ -118,4 +118,4 @@ const getRange = async (startId, endId) => {
 
 }
 
-getRange('102', '104');
+getRange( '101', '107');
