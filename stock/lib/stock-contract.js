@@ -209,6 +209,19 @@ class StockContract extends Contract {
         
     }
 
+    /**
+     * 
+     * @param {The name of the contract} ctx 
+     * @param {The query selector string} query 
+     */
+    async getQueryResult(ctx, query) {
+
+        let resultsIterator = await ctx.stub.getQueryResult(query);
+        let results = await this.getRangeResults(resultsIterator);
+
+        return results;        
+    }
+
 }
 
 module.exports = StockContract;
