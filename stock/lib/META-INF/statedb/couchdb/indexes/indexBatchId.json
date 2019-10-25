@@ -1,0 +1,10 @@
+{
+  "index": {
+    "fields": [
+      "sourceBatchId"
+    ]
+  },
+  "ddoc": "indexBatchIdoc",
+  "name": "indexBatchId",
+  "type": "json"
+}

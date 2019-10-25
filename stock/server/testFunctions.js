@@ -13,15 +13,15 @@ const sb = new StringBuilder();
 
 const stockIn = 
 {
-  stockId: '1112',
+  stockId: '104',
   docType: 'stockLevel',
-  sourcestockId: 1001,
+  sourceBatchId: 1003,
   supplierId: '0001',
-  addedNewField: 'Stock Record 1112 has been created',
-  sourceBatchQuantity: 1827,
+  sourceBatchQuantity: 300,
   qtyUnitMeasurement: 'Kg',
-  dateProcessed: '2019-10-02',
-  testResultId: '20191002',};
+  dateProcessed: '2019-10-01',
+  testResultId: '20190710',
+};
 
 // const testIn =
 // {
@@ -127,6 +127,13 @@ const getQueryResult = async (query) => {
 
 }
 
+const runQueery = async (query) => {
+
+  const res = await network.runQuery(query); //
+  console.log(result);
+
+}
+
 // testy();
 
 // network.stockExists(stockIn.stockId)  ;
@@ -135,7 +142,7 @@ const getQueryResult = async (query) => {
 
 // network.updateStock(stockIn.stockId, JSON.stringify(stockIn));
 
-network.readStock(stockIn.stockId);
+// network.readStock(stockIn.stockId);
 
 // network.deleteStock("T103");
 
@@ -149,7 +156,30 @@ network.readStock(stockIn.stockId);
 
 // "{\r\n   \"selector\": {\r\n          \"sourceBatchQuantity\": {\r\n         \"$gt\": 499\r\n      }\r\n   }\r\n}"
 
+// const qry = "{\r\n   \"index\": {\r\n      \"fields\": [\r\n         \"supplierId\"\r\n      ]\r\n   },\r\n   \"name\": \"supplierId-json-index\",\r\n   \"type\": \"json\"\r\n}"
+
+// const qry = "{\r\n   \"selector\": \r\n\t{\r\n\t   \"index\": {\r\n\t\t  \"fields\": [\r\n\t\t     \"supplierId\"\r\n\t\t  ]\r\n\t   },\r\n\t   \"name\": \"supplierId-json-index\",\r\n\t   \"type\": \"json\"\r\n\t}\r\n}";
+
+// const qry = "{\r\n    \"_id\": \"05c0c8ee5166bf9a2dfb6cf97e005334\",\r\n  \"language\": \"query\",\r\n  \"views\": {\r\n    \"testResultId-json-index\": {\r\n      \"map\": {\r\n        \"fields\": {\r\n          \"supplierId\": \"asc\"\r\n        },\r\n        \"partial_filter_selector\": {}\r\n      },\r\n      \"reduce\": \"_count\",\r\n      \"options\": {\r\n        \"def\": {\r\n          \"fields\": [\r\n            \"supplierId\"\r\n          ]\r\n        }\r\n      }\r\n    }\r\n  }\r\n}";
+
 // getQueryResult("{\r\n   \"selector\": {\r\n      \"sourceBatchId\": {\r\n         \"$gt\": 1000\r\n      },\r\n      \"sourceBatchQuantity\": {\r\n         \"$gt\": 99\r\n      }\r\n   }\r\n}");
 
 // getQueryResult("{\r\n   \"selector\": {\r\n          \"sourceBatchQuantity\": {\r\n         \"$gte\": 100\r\n      }\r\n   }\r\n}");
 
+const qry = '{ \
+  "selector": { \
+    "stockId": { \
+      "$gt": "2232" \
+    }\
+  }\
+}';
+
+const indexQry = '{\
+"selector": {\
+  "sourceBatchId": {\
+    "$gte": 1\
+  }\
+}\
+}';
+
+getQueryResult(qry);

@@ -220,7 +220,7 @@ class StockContract extends Contract {
         let results = await this.getRangeResults(resultsIterator);
 
         return results;        
-    }
+    } 
 
 }
 
