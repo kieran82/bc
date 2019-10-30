@@ -289,8 +289,8 @@ class BatchFeedContract extends Contract {
         if (exists) {
             throw new Error(`The batch feed ${batchFeedId} already exists`);
         }
-        const asset = { value };
-        const buffer = Buffer.from(JSON.stringify(asset));
+
+        const buffer = Buffer.from(value);
         await ctx.stub.putState(batchFeedId, buffer);
     }
 
@@ -306,11 +306,12 @@ class BatchFeedContract extends Contract {
 
     async updateBatchFeed(ctx, batchFeedId, newValue) {
         const exists = await this.batchFeedExists(ctx, batchFeedId);
+        
         if (!exists) {
             throw new Error(`The batch feed ${batchFeedId} does not exist`);
         }
-        const asset = { value: newValue };
-        const buffer = Buffer.from(JSON.stringify(asset));
+
+        const buffer = Buffer.from(newValue);
         await ctx.stub.putState(batchFeedId, buffer);
     }
 
