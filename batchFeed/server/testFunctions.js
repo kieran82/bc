@@ -141,6 +141,34 @@ const getStateByRange = async (contractName, func, startId, endId) => {
 
 }
 
-// getStateByRange(theContract, 'getStateByRange', '1002', '');
+/** 
+ * Generic Query
+ * 
+*/
+const getQueryResult = async (func, query) => {
 
-getHistory(theContract, 'getHistoryForKey', '1001');
+  const res = await network.getQueryResult(theContract, func, query); //
+  const result = JSON.parse(res);
+
+  // Now all items in the history object array can be accessed
+  console.log("--------------------------------------------------------------------");
+  for (var myKey in result) {
+    console.log(result[myKey].Value);
+    console.log("--------------------------------------------------------------------");
+  }
+}
+
+let queryString = '{ \
+    "selector": { \
+        "_id": { \
+            "$gt": "1003" \
+        } \
+    } \
+}';
+
+getQueryResult( 'getQueryResult', queryString);
+
+
+// getStateByRange(theContract, 'getStateByRange', '1002', '1005');
+
+// getHistory(theContract, 'getHistoryForKey', '1001');

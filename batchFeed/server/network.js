@@ -256,4 +256,34 @@ exports.getStateByRange = async (contractName, func, startId, endId) => {
   }
 }
 
+exports.getQueryResult = async (contractName, func, query) => {
+  try {
+
+    const wallet = getWallet();
+    const exists = await wallet.exists(userName);
+
+    if (!exists) {
+      console.log(`An identity for the user ${userName} does not exist in the wallet`);
+      return;
+    }
+
+    // Get the contract from the network.
+    const gateway = new Gateway();
+    await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
+    const network = await gateway.getNetwork(theChannel);
+    const contract = network.getContract(contractName);
+
+    // Submit the specified transaction.
+    const result = await contract.submitTransaction(func, query);
+
+    // Disconnect from the gateway.
+    await gateway.disconnect();
+
+    return result;
+
+  } catch (error) {
+    console.error(`Failed to submit transaction: ${error}`);
+  }
+}
+
 
