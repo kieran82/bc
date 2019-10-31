@@ -166,11 +166,34 @@ class BatchFeedContract extends Contract {
             newBatchFeed[i].DocType = 'ErrigalBatchFeed';
             await ctx.stub.putState(newBatchFeed[i].BatchId, Buffer.from(JSON.stringify(newBatchFeed[i])));
         }
-
     }
 
     // Custom Code
 
+    /**
+     * 
+     * @param {The contract to use} ctx 
+     * @param {An array of batch objects. There is currently no size limit
+     *  for this array, but some limit should be set. We will have to see how badly performance 
+     *  is affected.} newBatchFeed 
+     */
+    async saveArray(ctx, strArray){
+        const newBatchFeed = JSON.parse(strArray);
+        
+        for (let i = 0; i < newBatchFeed.length; i++) {
+            await ctx.stub.putState(newBatchFeed[i].BatchId, Buffer.from(JSON.stringify(newBatchFeed[i])));      
+        }    
+    }
+
+
+    /**
+     * This function iterates over the results generated in the getHistoryForKey function.
+     * As it is specific to a transaction history, other fields that are not normally returned
+     * are included here, such as tx_id, timestamp and the deleted flag.
+     * 
+     * @param {The results iterator generated in getHistoryForKey function} iterator
+     * @param {This is currently always true while this function is specific to get transaction history records} isHistory 
+     */
     async getAllResults(iterator, isHistory) {
         let allResults = [];
         while (true) {
@@ -178,7 +201,6 @@ class BatchFeedContract extends Contract {
 
             if (res.value && res.value.value.toString()) {
                 let jsonRes = {};
-                console.log(res.value.value.toString('utf8'));
 
                 if (isHistory && isHistory === true) {
                     jsonRes.TxId = res.value.tx_id;
@@ -187,7 +209,6 @@ class BatchFeedContract extends Contract {
                     try {
                         jsonRes.Value = JSON.parse(res.value.value.toString('utf8'));
                     } catch (err) {
-                        console.log(err);
                         jsonRes.Value = res.value.value.toString('utf8');
                     }
                 } else {
@@ -195,7 +216,6 @@ class BatchFeedContract extends Contract {
                     try {
                         jsonRes.Record = JSON.parse(res.value.value.toString('utf8'));
                     } catch (err) {
-                        console.log(err);
                         jsonRes.Record = res.value.value.toString('utf8');
                     }
                 }
@@ -203,9 +223,7 @@ class BatchFeedContract extends Contract {
             }
 
             if (res.done) {
-                console.log('end of data');
                 await iterator.close();
-                console.info(allResults);
                 return allResults;
             }
         }
@@ -237,6 +255,11 @@ class BatchFeedContract extends Contract {
     }  
 
     /** Range Queries */
+    /**
+     * 
+     * @param {The name of the contract} ctx
+     * @param {The BatchId value, which is the key for the block} batchId 
+     */
     async getHistoryForKey(ctx, batchId) {
         const exists = await this.batchFeedExists(ctx, batchId);
 
@@ -250,6 +273,12 @@ class BatchFeedContract extends Contract {
         return Buffer.from(JSON.stringify(results));
     }
 
+    /**
+     * 
+     * @param {The name of the contract} ctx 
+     * @param {The BatchId for the start of the range} startId 
+     * @param {The BatchId beyond the end of the search range i.e. not included in result} endId 
+     */
     async getStateByRange(ctx, startId, endId) {
         const exists = await this.batchFeedExists(ctx, startId);
 
@@ -279,11 +308,24 @@ class BatchFeedContract extends Contract {
 
     //========================================================
 
+    /**
+     * This is a utility function to check for the existence of 
+     * a block before trying any further processing.
+     * 
+     * @param {The name of the contract} ctx 
+     * @param {The BatchId, which is the key} batchFeedId
+     */
     async batchFeedExists(ctx, batchFeedId) {
         const buffer = await ctx.stub.getState(batchFeedId);
         return (!!buffer && buffer.length > 0);
     }
 
+    /**
+     * 
+     * @param {The name of the contract} ctx 
+     * @param {The BatchId, which is the key} batchFeedId 
+     * @param {The JSON object which is stored in the ledger} value 
+     */
     async createBatchFeed(ctx, batchFeedId, value) {
         const exists = await this.batchFeedExists(ctx, batchFeedId);
         if (exists) {
@@ -294,6 +336,11 @@ class BatchFeedContract extends Contract {
         await ctx.stub.putState(batchFeedId, buffer);
     }
 
+    /**
+     * 
+     * @param {The name of the contract} ctx 
+     * @param {The BatchId value, which is the key} batchFeedId 
+     */
     async readBatchFeed(ctx, batchFeedId) {
         const exists = await this.batchFeedExists(ctx, batchFeedId);
         if (!exists) {
@@ -304,6 +351,12 @@ class BatchFeedContract extends Contract {
         return asset;
     }
 
+    /**
+     * 
+     * @param {The name of the contract} ctx 
+     * @param {The BatchId value, which is the key} batchFeedId
+     * @param {The updated block to save to the ledger} newValue 
+     */
     async updateBatchFeed(ctx, batchFeedId, newValue) {
         const exists = await this.batchFeedExists(ctx, batchFeedId);
         
@@ -315,6 +368,11 @@ class BatchFeedContract extends Contract {
         await ctx.stub.putState(batchFeedId, buffer);
     }
 
+    /**
+     *
+     * @param {The name of the contract} ctx
+     * @param {The BatchId value, which is the key} batchFeedId
+     */
     async deleteBatchFeed(ctx, batchFeedId) {
         const exists = await this.batchFeedExists(ctx, batchFeedId);
         if (!exists) {
