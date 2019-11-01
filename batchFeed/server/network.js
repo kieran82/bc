@@ -59,7 +59,7 @@ exports.keyExists = async (contractName, func, keyID) => {
     const contract = network.getContract(contractName);
 
     // Submit the specified transaction.
-    const retVal = await contract.submitTransaction(func, keyID);
+    const retVal = await contract.evaluateTransaction(func, keyID);
     console.log(`Return value is ${retVal}`);
 
     // Disconnect from the gateway.
@@ -214,7 +214,7 @@ exports.getHistoryForKey = async (contractName, func, keyID) => {
     const contract = network.getContract(contractName);
 
     // Submit the specified transaction.
-    const result = await contract.submitTransaction(func, keyID);
+    const result = await contract.evaluateTransaction(func, keyID);
     // console.log(`Transaction has been submitted:\n ${result}`);
 
     // Disconnect from the gateway.
@@ -244,7 +244,7 @@ exports.getStateByRange = async (contractName, func, startId, endId) => {
     const contract = network.getContract(contractName);
 
     // Submit the specified transaction.
-    const result = await contract.submitTransaction(func, startId, endId);
+    const result = await contract.evaluateTransaction(func, startId, endId);
 
     // Disconnect from the gateway.
     await gateway.disconnect();
@@ -274,13 +274,14 @@ exports.getQueryResult = async (contractName, func, query) => {
     const contract = network.getContract(contractName);
 
     // Submit the specified transaction.
-    await contract.submitTransaction(func, query);
+    const result = await contract.evaluateTransaction(func, query);
 
     // Disconnect from the gateway.
     await gateway.disconnect();
+    return result;
 
   } catch (error) {
-    console.error(`Failed to submit transaction: ${error}`);
+    console.error(`Failed to evaluate the transaction: ${error}`);
   }
 }
 

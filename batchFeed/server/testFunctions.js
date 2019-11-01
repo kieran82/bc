@@ -92,8 +92,8 @@ const newBatchFeed = [
     "Reference": "N/A"
   },
   {
-    "Number": 2,
-    "BatchId": "1002",
+    "Number": 22220,
+    "BatchId": "22220",
     "DocType": "ErrigalBatchFeed",
     "Vessel": "Dreadnought",
     "CatchDate": "2019-06-22",
@@ -117,8 +117,8 @@ const newBatchFeed = [
     "Reference": "N/A"
   },
   {
-    "Number": 2003,
-    "BatchId": "2003",
+    "Number": 22003,
+    "BatchId": "22003",
     "DocType": "ErrigalBatchFeed",
     "Vessel": "Dread Locks",
     "CatchDate": "2019-06-22",
@@ -142,8 +142,8 @@ const newBatchFeed = [
     "Reference": "N/A"
   },
   {
-    "Number": 2004,
-    "BatchId": "2004",
+    "Number": 22004,
+    "BatchId": "22004",
     "DocType": "ErrigalBatchFeed",
     "Vessel": "Dreadly",
     "CatchDate": "2019-06-22",
@@ -167,8 +167,8 @@ const newBatchFeed = [
     "Reference": "N/A"
   },
   {
-    "Number": 5,
-    "BatchId": "1005",
+    "Number": 22005,
+    "BatchId": "22005",
     "DocType": "ErrigalBatchFeed",
     "Vessel": "Marie Celeste",
     "CatchDate": "2019-06-22",
@@ -177,7 +177,7 @@ const newBatchFeed = [
     "Port": "Castletownbere",
     "FAOArea": "Area 13",
     "FishingGear": "Nets",
-    "Comment": "Updated",
+    "Comment": "Updated the comment",
     "Farm": "N/A",
     "ProductionDate": "N/A",
     "PackDate": "2019-06-24",
@@ -192,16 +192,16 @@ const newBatchFeed = [
     "Reference": "N/A"
   },
   {
-    "Number": 2006,
-    "BatchId": "2006",
+    "Number": 22006,
+    "BatchId": "22006",
     "DocType": "ErrigalBatchFeed",
-    "Vessel": "N/A",
+    "Vessel": "The Jolly Roger",
     "CatchDate": "2019-06-22",
     "LogSheetNumber": "N/A",
     "LandingDate": "2019-06-24",
     "Port": "N/A",
-    "FAOArea": "N/A",
-    "FishingGear": "N/A",
+    "FAOArea": "Area 12",
+    "FishingGear": "Net",
     "Comment": "New",
     "Farm": "My Great Big Farm",
     "ProductionDate": "2019-07-03",
@@ -288,8 +288,10 @@ const getStateByRange = async (contractName, func, startId, endId) => {
 const getQueryResult = async (func, query) => {
 
   const res = await network.getQueryResult(theContract, func, query); //
-  const result = JSON.parse(res);
 
+  const result = JSON.parse(res);
+  console.log(`${result.length} items returned`);
+  
   // Now all items in the history object array can be accessed
   console.log("--------------------------------------------------------------------");
   for (var myKey in result) {
@@ -312,8 +314,8 @@ const saveArray = async (contract, func, array) => {
 
 let queryString = '{ \
     "selector": { \
-        "_id": { \
-            "$gt": "1003" \
+        "Vessel": { \
+            "$eq": "Dreadnought21200" \
         } \
     } \
 }';
@@ -334,11 +336,8 @@ const testArray = (arr) => {
 
 const getFormattedDate = () => {
   try {
-    console.log('Inside');
-    // d = new Date("2019-02-02")
-
     
-    let date = new Date("2019-02-02");
+    let date = new Date("2019-10-14");
     let day = date.getDate() < 10 ? "0" + date.getDate().toString() : date.getDate().toString();
     const month = (date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1);
     const year = date.getFullYear();
@@ -357,20 +356,20 @@ const objToString = (number) => {
     "BatchId": "1001",
     "DocType": "ErrigalBatchFeed",
     "Vessel": "Dreadnought" ,
-    "CatchDate": "2019-06-22",
+    "CatchDate": "2019-09-12",
     "LogSheetNumber": 4123,
     "LandingDate": "2019-06-24",
     "Port": "Castletownbere",
-    "FAOArea": "Area1",
-    "FishingGear": "Large Nets",
+    "FAOArea": "Area2",
+    "FishingGear": "Nets",
     "Comment": "NoComment",
     "Farm": "N/A",
     "ProductionDate": "N/A",
     "PackDate": "2019-06-24",
-    "FreezeDate": "2019-06-05",
+    "FreezeDate": "N/A",
     "DefrostDate": "N/A",
     "UseByDate": "2019-08-24",
-    "CountryOfOrigin": "Ireland",
+    "CountryOfOrigin": "UK",
     "Temperature": 2,
     "SupplierTraceId": 44123,
     "TransportCompany": "N/A",
@@ -384,6 +383,10 @@ const objToString = (number) => {
   obj.LogSheetNumber = number + 23;
   obj.SupplierTraceId = number + 10057;
   obj.Vessel = "Dreadnought" + number.toString();
+  obj.Haulier = number % 2 ? "Logistics" : "TNT";
+  obj.LandingDate = getFormattedDate();
+  obj.TransportCompany = number % 10 ? "We Haul" : "You Haul";
+  obj.ProductionDate = getFormattedDate();
 
   // console.log(JSON.stringify(obj));  
   return obj;
@@ -409,16 +412,16 @@ const newArray = (start, end) => {
   
 };
 
-const arr = newArray(4000, 5000);
-saveArray(theContract, 'saveArray', arr);
+// const arr = newArray(20002, 22002);
+// saveArray(theContract, 'saveArray', arr);
 
 // getQueryResult( 'getQueryResult', queryString);
 
 // getStateByRange(theContract, 'getStateByRange', '4002', '4005');
 
-// getHistory(theContract, 'getHistoryForKey', '2003');
+// getHistory(theContract, 'getHistoryForKey', '21003');
 
-// testArray(newBatchFeed);
+testArray(newBatchFeed);
 
 // console.log(getFormattedDate());
 
