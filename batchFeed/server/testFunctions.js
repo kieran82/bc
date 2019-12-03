@@ -315,7 +315,7 @@ const saveArray = async (contract, func, array) => {
 let queryString = '{ \
     "selector": { \
         "Vessel": { \
-            "$eq": "Dreadnought21200" \
+            "$eq": "Dreadnought20012" \
         } \
     } \
 }';
@@ -412,16 +412,16 @@ const newArray = (start, end) => {
   
 };
 
-// const arr = newArray(20002, 22002);
+// const arr = newArray(20002, 20012);
 // saveArray(theContract, 'saveArray', arr);
 
-// getQueryResult( 'getQueryResult', queryString);
+getQueryResult( 'getQueryResult', queryString);
 
 // getStateByRange(theContract, 'getStateByRange', '4002', '4005');
 
 // getHistory(theContract, 'getHistoryForKey', '21003');
 
-testArray(newBatchFeed);
+// testArray(newBatchFeed);
 
 // console.log(getFormattedDate());
 

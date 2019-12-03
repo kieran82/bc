@@ -320,7 +320,7 @@ exports.getQueryResult = async (query) => {
     const gateway = new Gateway();
     await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
     const network = await gateway.getNetwork(theChannel);
-    const contract = network.getContract('stock');
+    const contract = network.getContract('batchorders');
 
     // Submit the specified transaction.
     const result = await contract.submitTransaction('getQueryResult', query);

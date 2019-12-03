@@ -16,7 +16,7 @@ const config = JSON.parse(configJSON);
 var connection_file = config.connection_file;
 var appAdmin = config.appAdmin;
 var appAdminSecret = config.appAdminSecret;
-var orgMSPID = config.orgMSPID;
+var orgMSPID = config.insuranceMSP;
 var caName = config.caName;
 
 const ccpPath = path.join(process.cwd(), connection_file);

@@ -14,7 +14,7 @@ const configJSON = fs.readFileSync(configPath, 'utf8');
 const config = JSON.parse(configJSON);
 var connection_file = config.connection_file;
 var appAdmin = config.appAdmin;
-var orgMSPID = config.orgMSPID;
+var orgMSPID = config.insuranceMSP;
 var userName = config.userName;
 var gatewayDiscovery = config.gatewayDiscovery;
 
@@ -30,20 +30,20 @@ async function main() {
     const wallet = new FileSystemWallet(walletPath);
     console.log(`Wallet path: ${walletPath}`);
 
-    // Check to see if we've already enrolled the user.
-    const userExists = await wallet.exists(userName);
-    if (userExists) {
-      console.log(`An identity for the user ${userName} already exists in the wallet`);
-      return;
-    }
+    // // Check to see if we've already enrolled the user.
+    // const userExists = await wallet.exists(userName);
+    // if (userExists) {
+    //   console.log(`An identity for the user ${userName} already exists in the wallet`);
+    //   return;
+    // }
 
-    // Check to see if we've already enrolled the admin user.
-    const adminExists = await wallet.exists(appAdmin);
-    if (!adminExists) {
-      console.log(`An identity for the admin user ${appAdmin} does not exist in the wallet`);
-      console.log('Run the enrollAdmin.js application before retrying');
-      return;
-    }
+    // // Check to see if we've already enrolled the admin user.
+    // const adminExists = await wallet.exists(appAdmin);
+    // if (!adminExists) {
+    //   console.log(`An identity for the admin user ${appAdmin} does not exist in the wallet`);
+    //   console.log('Run the enrollAdmin.js application before retrying');
+    //   return;
+    // }
 
     // Create a new gateway for connecting to our peer node.
     const gateway = new Gateway();

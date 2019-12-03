@@ -1,0 +1,67 @@
+/home/jerome/software-dev/bc/stock/server
+Config path is /home/jerome/software-dev/bc/stock/server/config.json from web client
+Connection file is mychannel_stock_profile.json 
+Wallet path: /home/jerome/software-dev/bc/stock/server/wallet
+--------------------------------------------------------------------
+{ batchId: '23C242B8-56DB-4135-8CAF-79D946C3ACC0',
+  batchNumber: 'D233455',
+  dateReceived: 1572307200,
+  dateTimeReceived: 1572345931,
+  docType: 'batchOrder',
+  intakeLines: 
+   [ { intakeLine: 1,
+       qtyUnitMeasurement: 'KG',
+       quantity: '900',
+       sourceBatchId: '18A1318A-6624-498D-9689-03EFD164E4DC' },
+     { intakeLine: 2,
+       qtyUnitMeasurement: 'KG',
+       quantity: '4700',
+       sourceBatchId: 'DE9DB334-E706-4807-84B6-AA0330F366CC' } ],
+  orderId: '3947E082-6A6A-4691-940C-7DA450A61DD2',
+  qtyUnitMeasurement: 'KG',
+  quantity: '5,600.00',
+  received_date_time: '2019-10-29 10:45:31',
+  speciesId: '309',
+  speciesName: 'Salmon',
+  timeReceived: '10:45:31' }
+--------------------------------------------------------------------
+{ batchId: 'BE92344A-1E9A-4D37-A064-F25D96BE3A81',
+  batchNumber: 'F345556667',
+  dateReceived: 1571958000,
+  dateTimeReceived: 1572018676,
+  docType: 'batchOrder',
+  intakeLines: 
+   [ { intakeLine: 1,
+       qtyUnitMeasurement: 'KG',
+       quantity: '300',
+       sourceBatchId: 'F3007194' },
+     { intakeLine: 2,
+       qtyUnitMeasurement: 'KG',
+       quantity: '900',
+       sourceBatchId: 'F3007188' } ],
+  orderId: 'D5AA03AC-3DBE-4874-B8EC-AB765F3A2F14',
+  qtyUnitMeasurement: 'KG',
+  quantity: '1,200.00',
+  received_date_time: '2019-10-25 16:51:16',
+  speciesId: '309',
+  speciesName: 'Salmon',
+  timeReceived: '16:51:16' }
+--------------------------------------------------------------------
+{ batchId: 'C7E89518-2859-4631-9D4D-FF86A43579AD',
+  batchNumber: '1234',
+  dateReceived: 1574294400,
+  dateTimeReceived: 1574336424,
+  docType: 'batchOrder',
+  intakeLines: 
+   [ { intakeLine: 1,
+       qtyUnitMeasurement: 'KG',
+       quantity: '80.00',
+       sourceBatchId: '18A1318A-6624-498D-9689-03EFD164E4DC' } ],
+  orderId: 'D5AA03AC-3DBE-4874-B8EC-AB765F3A2F14',
+  qtyUnitMeasurement: 'KG',
+  quantity: '80.00',
+  received_date_time: '2019-11-21 11:40:24',
+  speciesId: '309',
+  speciesName: 'Salmon',
+  timeReceived: '11:40:28' }
+--------------------------------------------------------------------

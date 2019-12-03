@@ -4,7 +4,7 @@
   "appAdminSecret": "app-adminpw",
   "insuranceMSP": "insurancemsp",
   "caName": "159.122.187.58:31083",
-  "userName": "User2@org1.example.com",
+  "userName": "User1@org1.example.com",
   "wallet": "/wallet",
   "channel": "mychannel",
   "gatewayDiscovery": {

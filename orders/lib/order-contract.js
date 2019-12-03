@@ -49,6 +49,24 @@ class OrderContract extends Contract {
         console.info('============= END : Initialise Ledger ===========');
     }
 
+    // Custom Code
+
+    /**
+     * 
+     * @param {The contract to use} ctx 
+     * @param {An array of batch objects. There is currently no size limit
+    *  for this array, but some limit should be set. We will have to see how badly performance 
+    *  is affected.} newBatchFeed 
+    */
+    async saveArray(ctx, strArray){
+        const newBatchFeed = JSON.parse(strArray);
+        
+        for (let i = 0; i < newBatchFeed.length; i++) {
+            await ctx.stub.putState(newBatchFeed[i].orderId, Buffer.from(JSON.stringify(newBatchFeed[i])));      
+        }    
+    }
+       
+
     async getAllResults(iterator, isHistory) {
         let allResults = [];
         while (true) {
@@ -87,7 +105,43 @@ class OrderContract extends Contract {
                 return allResults;
             }
         }
+    }    
+    
+    /**
+     * 
+     * @param {The name of the contract} ctx 
+     * @param {The BatchId for the start of the range} startId 
+     * @param {The BatchId beyond the end of the search range i.e. not included in result} endId 
+     */
+    async getStateByRange(ctx, startId, endId) {
+        const exists = await this.batchFeedExists(ctx, startId);
+
+        if (!exists) {
+            throw new Error(`The Stock ID of ${startId} does not exist`);
+        }
+
+        let resultsIterator = await ctx.stub.getStateByRange(startId, endId);
+        let results = await this.getRangeResults(resultsIterator);
+
+        return results;
+
+    }
+    
+
+    /**
+     * 
+     * @param {The name of the contract} ctx 
+     * @param {The query selector string} query 
+     */
+    async getQueryResult(ctx, query) {
+
+        let resultsIterator = await ctx.stub.getQueryResult(query);
+        let results = await this.getRangeResults(resultsIterator);
+
+        return results;
     }     
+
+    //========================================================    
 
     async foodOrderExists(ctx, orderId) {
         const buffer = await ctx.stub.getState(orderId);

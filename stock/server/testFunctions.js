@@ -13,9 +13,9 @@ const sb = new StringBuilder();
 
 const stockIn = 
 {
-  stockId: '104',
+  stockId: '204',
   docType: 'stockLevel',
-  sourceBatchId: 1003,
+  sourceBatchId: 2003,
   supplierId: '0001',
   sourceBatchQuantity: 300,
   qtyUnitMeasurement: 'Kg',
@@ -168,8 +168,8 @@ const runQueery = async (query) => {
 
 const qry = '{ \
   "selector": { \
-    "stockId": { \
-      "$gt": "2232" \
+    "batchId": { \
+      "$gte": "0" \
     }\
   }\
 }';
@@ -177,7 +177,7 @@ const qry = '{ \
 const indexQry = '{\
 "selector": {\
   "sourceBatchId": {\
-    "$gte": 1\
+    "$gt": 1\
   }\
 }\
 }';
