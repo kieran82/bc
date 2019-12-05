@@ -16,6 +16,7 @@ var userName = config.userName;
 var gatewayDiscovery = config.gatewayDiscovery;
 const theWallet = config.wallet;
 const theChannel = config.channel;
+const theClientPath = config.client;
 
 // console.log(`The wallet folder is ${theWallet}`);
 
@@ -30,7 +31,7 @@ const ccp = JSON.parse(ccpJSON);
 /* ===============================  Test Methods ====================================== */
 // Common method to get a Wallet
 const getWallet = () => {
-  const walletPath = path.join(process.cwd(), theWallet);
+  const walletPath = path.join(process.cwd(), theWallet, theClientPath);
   const wallet = new FileSystemWallet(walletPath);
   console.log(`Wallet path: ${walletPath}`);
   return wallet;

@@ -315,7 +315,7 @@ const saveArray = async (contract, func, array) => {
 let queryString = '{ \
     "selector": { \
         "Vessel": { \
-            "$eq": "Dreadnought20012" \
+            "$eq": "Dreadnought20002" \
         } \
     } \
 }';

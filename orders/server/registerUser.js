@@ -17,6 +17,7 @@ var appAdmin = config.appAdmin;
 var orgMSPID = config.orgMSPID;
 var userName = config.userName;
 var gatewayDiscovery = config.gatewayDiscovery;
+const theWallet = config.wallet;
 
 const ccpPath = path.join(process.cwd(), connection_file);
 const ccpJSON = fs.readFileSync(ccpPath, 'utf8');
@@ -26,7 +27,7 @@ async function main() {
   try {
 
     // Create a new file system based wallet for managing identities.
-    const walletPath = path.join(process.cwd(), 'wallet');
+    const walletPath = path.join(process.cwd(), theWallet);
     const wallet = new FileSystemWallet(walletPath);
     console.log(`Wallet path: ${walletPath}`);
 

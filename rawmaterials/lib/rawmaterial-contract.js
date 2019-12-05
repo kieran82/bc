@@ -41,46 +41,102 @@ class RawmaterialContract extends Contract {
         }
         console.info('============= END : Initialise Ledger ===========');
     }   
-    
-    async getAllResults(iterator, isHistory) {
-        let allResults = [];
-        while (true) {
-            let res = await iterator.next();
 
-            if (res.value && res.value.value.toString()) {
-                let jsonRes = {};
-                console.log(res.value.value.toString('utf8'));
+    // Custom Code
 
-                if (isHistory && isHistory === true) {
-                    jsonRes.TxId = res.value.tx_id;
-                    jsonRes.Timestamp = res.value.timestamp;
-                    jsonRes.IsDelete = res.value.is_delete.toString();
-                    try {
-                        jsonRes.Value = JSON.parse(res.value.value.toString('utf8'));
-                    } catch (err) {
-                        console.log(err);
-                        jsonRes.Value = res.value.value.toString('utf8');
-                    }
-                } else {
-                    jsonRes.Key = res.value.key;
-                    try {
-                        jsonRes.Record = JSON.parse(res.value.value.toString('utf8'));
-                    } catch (err) {
-                        console.log(err);
-                        jsonRes.Record = res.value.value.toString('utf8');
-                    }
-                }
-                allResults.push(jsonRes);
-            }
-
-            if (res.done) {
-                console.log('end of data');
-                await iterator.close();
-                console.info(allResults);
-                return allResults;
-            }
+    /**
+     * 
+     * @param {The contract to use} ctx 
+     * @param {An array of batch objects. There is currently no size limit
+        *  for this array, but some limit should be set. We will have to see how badly performance 
+        *  is affected.} newBatchFeed 
+        */
+        async saveArray(ctx, strArray){
+            const newBatchFeed = JSON.parse(strArray);
+            
+            for (let i = 0; i < newBatchFeed.length; i++) {
+                await ctx.stub.putState(newBatchFeed[i].batchId, Buffer.from(JSON.stringify(newBatchFeed[i])));      
+            }    
         }
-    }       
+           
+    
+        async getAllResults(iterator, isHistory) {
+            let allResults = [];
+            while (true) {
+                let res = await iterator.next();
+    
+                if (res.value && res.value.value.toString()) {
+                    let jsonRes = {};
+                    console.log(res.value.value.toString('utf8'));
+    
+                    if (isHistory && isHistory === true) {
+                        jsonRes.TxId = res.value.tx_id;
+                        jsonRes.Timestamp = res.value.timestamp;
+                        jsonRes.IsDelete = res.value.is_delete.toString();
+                        try {
+                            jsonRes.Value = JSON.parse(res.value.value.toString('utf8'));
+                        } catch (err) {
+                            console.log(err);
+                            jsonRes.Value = res.value.value.toString('utf8');
+                        }
+                    } else {
+                        jsonRes.Key = res.value.key;
+                        try {
+                            jsonRes.Record = JSON.parse(res.value.value.toString('utf8'));
+                        } catch (err) {
+                            console.log(err);
+                            jsonRes.Record = res.value.value.toString('utf8');
+                        }
+                    }
+                    allResults.push(jsonRes);
+                }
+    
+                if (res.done) {
+                    console.log('end of data');
+                    await iterator.close();
+                    console.info(allResults);
+                    return allResults;
+                }
+            }
+        }    
+        
+        /**
+         * 
+         * @param {The name of the contract} ctx 
+         * @param {The BatchId for the start of the range} startId 
+         * @param {The BatchId beyond the end of the search range i.e. not included in result} endId 
+         */
+        async getStateByRange(ctx, startId, endId) {
+            const exists = await this.batchFeedExists(ctx, startId);
+    
+            if (!exists) {
+                throw new Error(`The Stock ID of ${startId} does not exist`);
+            }
+    
+            let resultsIterator = await ctx.stub.getStateByRange(startId, endId);
+            let results = await this.getRangeResults(resultsIterator);
+    
+            return results;
+    
+        }
+        
+    
+        /**
+         * 
+         * @param {The name of the contract} ctx 
+         * @param {The query selector string} query 
+         */
+        async getQueryResult(ctx, query) {
+    
+            let resultsIterator = await ctx.stub.getQueryResult(query);
+            let results = await this.getRangeResults(resultsIterator);
+    
+            return results;
+        }     
+    
+        //========================================================       
+    
+   
 
     async rawmaterialExists(ctx, rawmaterialId) {
         const buffer = await ctx.stub.getState(rawmaterialId);

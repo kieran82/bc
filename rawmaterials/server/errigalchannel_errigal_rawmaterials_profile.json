@@ -1,0 +1,47 @@
+{
+    "name": "errigalchannel",
+    "description": "Network on IBP v2",
+    "version": "1.0.0",
+    "client": {
+        "organization": "errigalmsp"
+    },
+    "organizations": {
+        "errigalmsp": {
+            "mspid": "errigalmsp",
+            "peers": [
+                "n29a8bc-errigalpeer.mycluster-677965.eu-de.containers.appdomain.cloud:7051"
+            ],
+            "certificateAuthorities": [
+                "n29a8bc-errigalca.mycluster-677965.eu-de.containers.appdomain.cloud:7054"
+            ]
+        }
+    },
+    "orderers": {
+        "n29a8bc-orderer1.mycluster-677965.eu-de.containers.appdomain.cloud:7050": {
+            "url": "grpcs://n29a8bc-orderer1.mycluster-677965.eu-de.containers.appdomain.cloud:7050",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICIjCCAcigAwIBAgIUNhOrHfZmzrdmKNutLvS0b2uTvAEwCgYIKoZIzj0EAwIw\nZTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRYwFAYDVQQDEw1PcmRlcmVy\nQ0EtdGxzMB4XDTE5MTIwNTExNTkwMFoXDTM0MTIwMTExNTkwMFowZTELMAkGA1UE\nBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBlcmxl\nZGdlcjEPMA0GA1UECxMGRmFicmljMRYwFAYDVQQDEw1PcmRlcmVyQ0EtdGxzMFkw\nEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEvJJx3nsIB3Dyc0uwYEi+UTIq+RNOBaLt\nlccaOmeHlihf2gmeXbvzYUnjuQKAFHWyfP7X9mtIaV3zmF6od53T96NWMFQwDgYD\nVR0PAQH/BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYEFJn8lCKP\noRH7OEFSDZ22CSAZTo6XMA8GA1UdEQQIMAaHBArChmYwCgYIKoZIzj0EAwIDSAAw\nRQIhAOwQXqBG8f78X51s3XQXVGTVV/T1Jk76h/dFyx6H5u1AAiA4jyJg0cTK1/Jx\nMGZqEa74MnAk4PI7LKEW7emjbvd4Yg==\n-----END CERTIFICATE-----\n"
+            }
+        }
+    },
+    "peers": {
+        "n29a8bc-errigalpeer.mycluster-677965.eu-de.containers.appdomain.cloud:7051": {
+            "url": "grpcs://n29a8bc-errigalpeer.mycluster-677965.eu-de.containers.appdomain.cloud:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICIjCCAcigAwIBAgIUVn38KWxEnpie54vOUO9vhWuCLvowCgYIKoZIzj0EAwIw\nZTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRYwFAYDVQQDEw1FcnJpZ2Fs\nQ0EtdGxzMB4XDTE5MTIwNTExMzgwMFoXDTM0MTIwMTExMzgwMFowZTELMAkGA1UE\nBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBlcmxl\nZGdlcjEPMA0GA1UECxMGRmFicmljMRYwFAYDVQQDEw1FcnJpZ2FsQ0EtdGxzMFkw\nEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEten0RQ97cQPWDrxvPcoau9rdozWvOH25\neuT98QsbekXy5dHPi0zYxZzsv4uixUoKn28HkcqoW/O723SlqSRmu6NWMFQwDgYD\nVR0PAQH/BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYEFLWtSaoE\niaijAsG3qeQBwiy3CmCoMA8GA1UdEQQIMAaHBArChmYwCgYIKoZIzj0EAwIDSAAw\nRQIhALM8RAXBY/zSeA6+bTVXy6XT7mwZL0WNmRsl2lwQOQzuAiARg5sAPJxJGogv\nxY6e88AVeUEipH+2kRLQ3d1Oopvzdw==\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "n29a8bc-errigalpeer.mycluster-677965.eu-de.containers.appdomain.cloud"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "n29a8bc-errigalca.mycluster-677965.eu-de.containers.appdomain.cloud:7054": {
+            "url": "https://n29a8bc-errigalca.mycluster-677965.eu-de.containers.appdomain.cloud:7054",
+            "caName": "ca",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\r\nMIIDJDCCAo2gAwIBAgIJY2S7cFD142xnMA0GCSqGSIb3DQEBBQUAMIGpMUwwSgYD\r\nVQQDE0NuMjlhOGJjLWVycmlnYWxjYS5teWNsdXN0ZXItNjc3OTY1LmV1LWRlLmNv\r\nbnRhaW5lcnMuYXBwZG9tYWluLmNsb3VkMQswCQYDVQQGEwJVUzEXMBUGA1UECBMO\r\nTm9ydGggQ2Fyb2xpbmExEDAOBgNVBAcTB1JhbGVpZ2gxDDAKBgNVBAoTA0lCTTET\r\nMBEGA1UECxMKQmxvY2tjaGFpbjAeFw0xOTEyMDUxMTQwMTZaFw0yMDEyMDQxMTQw\r\nMTZaMIGpMUwwSgYDVQQDE0NuMjlhOGJjLWVycmlnYWxjYS5teWNsdXN0ZXItNjc3\r\nOTY1LmV1LWRlLmNvbnRhaW5lcnMuYXBwZG9tYWluLmNsb3VkMQswCQYDVQQGEwJV\r\nUzEXMBUGA1UECBMOTm9ydGggQ2Fyb2xpbmExEDAOBgNVBAcTB1JhbGVpZ2gxDDAK\r\nBgNVBAoTA0lCTTETMBEGA1UECxMKQmxvY2tjaGFpbjCBnzANBgkqhkiG9w0BAQEF\r\nAAOBjQAwgYkCgYEA6sLKl1D4CwEYoyuOeBIk+yLVZs5JB5uoDQmB/qwHb+khoMn4\r\nb20utdZD1rRdHGu+0KWVClM3npoZiIBgng++IZQefQDLCAFqVBeg6SWviIw4s6Yg\r\nRQEDdgwQwp9bdv0e/tT7KAloLrzZEObwv2k/VIzduGfeyoAn3V1wo+XF5LkCAwEA\r\nAaNSMFAwTgYDVR0RBEcwRYJDbjI5YThiYy1lcnJpZ2FsY2EubXljbHVzdGVyLTY3\r\nNzk2NS5ldS1kZS5jb250YWluZXJzLmFwcGRvbWFpbi5jbG91ZDANBgkqhkiG9w0B\r\nAQUFAAOBgQCctUy1CmN2K4t4yQVhxL8vXiXPpdsZT6lpK/MU7VyqdNv6+Zrx71oF\r\n2zgVrufmZHsKyEcg0DdI85gFwYtRt3yC6wr1e8Y2+P8VUEiE15sb6ah6DzCVydQl\r\nxHPiDrcvF77OCzxIzwGHdKhcY5s+3+LfQEMD2cU0qgnvFHYG0pBfkA==\r\n-----END CERTIFICATE-----\r\n"
+            }
+        }
+    }
+}

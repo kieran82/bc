@@ -5,7 +5,7 @@
   "archive": "arc",
   "controlFileExtension": ".control",
   "home": "/home/jerome/Documents/sftp",
-  "connection_file": "channel1_orders_profile.json",
+  "connection_file": "local_fabric_connection.json",
   "appAdmin": "app-admin",
   "appAdminSecret": "app-adminpw",
   "orgMSPID": "sdlmmsp",

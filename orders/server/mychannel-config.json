@@ -1,0 +1,21 @@
+{
+  "folderToWatch": "/home/jerome/Documents/sftp/sdlm/in",
+  "localFolder": "/home/jerome/atest/sftp/sdlm/in",
+  "localOutPath": "/home/jerome/atest/sftp/sdlm/out",
+  "archive": "arc",
+  "controlFileExtension": ".control",
+  "home": "/home/jerome/Documents/sftp",
+  "connection_file": "mychannel_orders_profile.json",
+  "appAdmin": "app-admin",
+  "appAdminSecret": "app-adminpw",
+  "orgMSPID": "insurancemsp",
+  "caName": "159.122.187.58:31083",
+  "userName": "User1@org1.example.com",
+  "wallet": "/free-wallet",
+  "channel": "mychannel",  
+  "gatewayDiscovery": {
+    "enabled": true,
+    "asLocalhost": false
+  },
+  "batchSize":"5"
+}

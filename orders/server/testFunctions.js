@@ -144,7 +144,7 @@ const testy = async () => {
 // testy();
 
 
-// network.keyExists(theContract, 'orderExists', '1001')  ;
+network.keyExists(theContract, 'orderExists', '1001')  ;
 
 // network.createKeyValue(theContract, 'createOrder', order.orderId, JSON.stringify(order));
 
@@ -156,7 +156,7 @@ const testy = async () => {
 
 // saveOrderBatch(2057, 2156);
 
-network.readKeyValue(theContract, 'readOrder', "2155");
+// network.readKeyValue(theContract, 'readOrder', "1001");
 
 // const str = createOrderBatch(2000, 2010);
 // console.log(str);
