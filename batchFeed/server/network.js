@@ -17,6 +17,7 @@ var gatewayDiscovery = config.gatewayDiscovery;
 const theWallet = config.wallet;
 const theChannel = config.channel;
 const theClientPath = config.client;
+const batchSize = Number(config.batchSize);
 
 // console.log(`The wallet folder is ${theWallet}`);
 
@@ -306,6 +307,65 @@ exports.saveArray = async (contractName, func, newBatchFeed) => {
 
     // Submit the specified transaction.
     await contract.submitTransaction(func, newBatchFeed);
+
+    // Disconnect from the gateway.
+    await gateway.disconnect();
+
+  } catch (error) {
+    console.error(`Failed to submit transaction: ${error}`);
+  }
+
+}
+
+exports.saveArrayInSegments = async (contractName, func, newBatchFeed) => {
+  try {
+    let counter = 0;
+    let recordCount = 0;
+    let arr = [];    
+
+    const wallet = getWallet();
+    const exists = await wallet.exists(userName);    
+
+    if (!exists) {
+      console.log(`An identity for the user ${userName} does not exist in the wallet`);
+      return;
+    }
+
+    // Get the contract from the network.
+    const gateway = new Gateway();
+    await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
+    const network = await gateway.getNetwork(theChannel);
+    const contract = network.getContract(contractName);
+
+    console.log(`Counter = ${newBatchFeed.length}`);
+
+    for (let i = 0; i < newBatchFeed.length; i++) {
+      arr.push(newBatchFeed[i]);
+
+      if (counter >= batchSize) {
+        let strArray = JSON.stringify(arr);
+        console.log(`Counter = ${counter}`);
+        
+        await contract.submitTransaction(func, strArray);
+        // Empty the array
+        arr.length = 0;
+        counter = 0;
+      }
+
+      counter++;
+      recordCount++;      
+      // console.log(`${newBatchFeed[i].orderId} and ${JSON.stringify(newBatchFeed[i])}`);   
+    }    
+    
+    let strArray = JSON.stringify(arr);
+    console.log(`Counter = ${counter}`);
+        
+    await contract.submitTransaction(func, strArray);    
+
+    console.log(``);
+    
+    // Submit the specified transaction.
+    // await contract.submitTransaction(func, newBatchFeed);
 
     // Disconnect from the gateway.
     await gateway.disconnect();

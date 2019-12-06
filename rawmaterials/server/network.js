@@ -321,31 +321,72 @@ exports.saveArray = async (contractName, func, newBatchFeed) => {
     console.error(`Failed to submit transaction: ${error}`);
   }
 
-  // try {
-  //   const wallet = getWallet();
-  //   const exists = await wallet.exists(userName);
+}
 
-  //   if (!exists) {
-  //     console.log(`An identity for the user ${userName} does not exist in the wallet`);
-  //     return;
-  //   }
+exports.getQueryResult = async (contractName, func, query) => {
+  try {
 
-  //   // Get the contract from the network.
-  //   const gateway = new Gateway();
-  //   await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
-  //   const network = await gateway.getNetwork(theChannel);
-  //   const contract = network.getContract(contractName);
+    const wallet = getWallet();
+    const exists = await wallet.exists(userName);
 
-  //   // Submit the specified transaction.
-  //   await contract.submitTransaction(func, keyID);
-  //   console.log(`Item key ${keyID} has been deleted`);
+    if (!exists) {
+      console.log(`An identity for the user ${userName} does not exist in the wallet`);
+      return;
+    }
 
-  //   // Disconnect from the gateway.
-  //   await gateway.disconnect();
+    // Get the contract from the network.
+    const gateway = new Gateway();
+    await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
+    const network = await gateway.getNetwork(theChannel);
+    const contract = network.getContract(contractName);
 
-  // } catch (error) {
-  //   console.error(`Failed to submit transaction: ${error}`);
-  // }  
+    // Submit the specified transaction.
+    const result = await contract.evaluateTransaction(func, query);
+
+    // Disconnect from the gateway.
+    await gateway.disconnect();
+    return result;
+
+  } catch (error) {
+    console.error(`Failed to evaluate the transaction: ${error}`);
+  }
+}
+
+exports.saveArrayOneAtATime = async (contractName, func, newBatchFeed) => {
+
+  try {
+
+    const wallet = getWallet();
+    const exists = await wallet.exists(userName);    
+
+    if (!exists) {
+      console.log(`An identity for the user ${userName} does not exist in the wallet`);
+      return;
+    }
+
+    // Get the contract from the network.
+    const gateway = new Gateway();
+    await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
+    const network = await gateway.getNetwork(theChannel);
+    const contract = network.getContract(contractName);
+
+    console.log(newBatchFeed.length);
+
+    for (let i = 0; i < newBatchFeed.length; i++) {
+      console.log(`${newBatchFeed[i].batchId} and ${JSON.stringify(newBatchFeed[i])}`);   
+      
+      await contract.submitTransaction(func, newBatchFeed[i].batchId, JSON.stringify(newBatchFeed[i]));
+    }        
+
+    // Submit the specified transaction.
+    // await contract.submitTransaction(func, strArray);
+
+    // Disconnect from the gateway.
+    await gateway.disconnect();
+
+  } catch (error) {
+    console.error(`Failed to submit transaction: ${error}`);
+  }
 }
 
 /**

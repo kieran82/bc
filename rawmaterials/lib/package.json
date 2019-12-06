@@ -1,6 +1,6 @@
 {
-    "name": "errigal_rawmaterials_2",
-    "version": "0.0.1",
+    "name": "errigal_rawmaterials",
+    "version": "0.0.3",
     "description": "My Smart Contract",
     "main": "index.js",
     "engines": {

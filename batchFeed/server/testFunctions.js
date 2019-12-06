@@ -307,18 +307,10 @@ const saveArray = async (contract, func, array) => {
 
   });
 
-  let strArray = JSON.stringify(array);
+  // let strArray = JSON.stringify(array);
 
-  await network.saveArray(contract, func, strArray); //  
+  await network.saveArrayInSegments(contract, func, array); //  
 }
-
-let queryString = '{ \
-    "selector": { \
-        "Vessel": { \
-            "$eq": "Dreadnought20002" \
-        } \
-    } \
-}';
 
 const testArray = (arr) => {
 
@@ -369,11 +361,11 @@ const objToString = (number) => {
     "FreezeDate": "N/A",
     "DefrostDate": "N/A",
     "UseByDate": "2019-08-24",
-    "CountryOfOrigin": "UK",
+    "CountryOfOrigin": "Ireland",
     "Temperature": 2,
     "SupplierTraceId": 44123,
     "TransportCompany": "N/A",
-    "Haulier": "N/A",
+    "Haulier": "Haul Ass",
     "Reference": "N/A"
   };
 
@@ -381,8 +373,8 @@ const objToString = (number) => {
   obj.Number = number;
   obj.BatchId = number.toString();
   obj.LogSheetNumber = number + 23;
-  obj.SupplierTraceId = number + 10057;
-  obj.Vessel = "Dreadnought" + number.toString();
+  obj.SupplierTraceId = number + 20057;
+  obj.Vessel = "Dreadnought" + number % 10 ? "We Haul" : "You Haul";             number.toString();
   obj.Haulier = number % 2 ? "Logistics" : "TNT";
   obj.LandingDate = getFormattedDate();
   obj.TransportCompany = number % 10 ? "We Haul" : "You Haul";
@@ -412,12 +404,20 @@ const newArray = (start, end) => {
   
 };
 
-// const arr = newArray(20002, 20012);
+let queryString = '{ \
+  "selector": { \
+      "BatchId": { \
+          "$eq": "21401" \
+      } \
+  } \
+}';
+
+// const arr = newArray(21403, 21803);
 // saveArray(theContract, 'saveArray', arr);
 
 getQueryResult( 'getQueryResult', queryString);
 
-// getStateByRange(theContract, 'getStateByRange', '4002', '4005');
+// getStateByRange(theContract, 'getStateByRange', '21400', '21402');
 
 // getHistory(theContract, 'getHistoryForKey', '21003');
 
@@ -427,3 +427,5 @@ getQueryResult( 'getQueryResult', queryString);
 
 // objToString(3001);
 //  newArray(3000, 4000);
+
+// network.readKeyValue(theContract, 'readBatchFeed', "20400");

@@ -8,13 +8,13 @@ const fs = require('fs');
 const path = require('path');
 const StringBuilder = require('node-stringbuilder');
 const sb = new StringBuilder();
-const theContract = 'daly_rawmaterials';
+const theContract = 'errigal_rawmaterials';
 
 const network = require('./network');
 
 const rawMaterialIn = 
   {
-    batchId: '3445',
+    batchId: '2511',
     docType: 'materials',
     certified: 'Yes',
     supplierId: '1001',
@@ -31,11 +31,11 @@ const rawMaterialIn =
       batchId: '1003',
       docType: 'materials',
       certified: 'Yes',
-      supplierId: '1001',
+      supplierId: '1002',
       quantity: '144',
       qtyUnitMeasurement: 'Kg',
-      product: 'Organically Salmony',
-      dateReceived: '2019-11-17',
+      product: 'Organic Salmon',
+      dateReceived: '2019-12-17',
     };
     
     let rawmaterial = {};
@@ -55,7 +55,7 @@ const createRawmaterialBatch = (firstBatchId, lastBatchId) => {
   let batchArray = [];
 
   for(let i = firstBatchId; i <= lastBatchId; i++) {
-    // console.log(`This is the (i)  ${i}`);
+
     batchArray.push(createRawMaterialObject(i.toString()));
     // console.log(Rawmaterial.BatchId);
     
@@ -75,18 +75,25 @@ const createRawmaterialBatch = (firstBatchId, lastBatchId) => {
  * @param {The first number in the BatchId range} firstBatchId 
  * @param {the last number in the BatchId range} lastBatchId 
  */
-const saveRawmaterialBatch = async (firstBatchId, lastBatchId) => {
+const saveRawmaterialBatch = async (firstBatchId, lastBatchId, inIncrements) => {
   let counter = 0;
   //saveArray
   let batchArray = [];
   batchArray = createRawmaterialBatch(firstBatchId, lastBatchId);
   console.log(`batchArray length is ${batchArray.length}`);
 
+  if (inIncrements === true){
+    
+    await network.saveArrayOneAtATime(theContract, 'createRawmaterial', batchArray);
+  }
+  else {
+    await network.saveArray(theContract, 'saveArray', batchArray);
+  }
   // for (let i = 0; i < batchArray.length; i++) {
   //   console.log(`${batchArray[i].BatchId} and ${JSON.stringify(batchArray[i])}`);   
   // }    
   
-  await network.saveArray(theContract, 'saveArray', batchArray);
+  
 
 }
 
@@ -114,21 +121,51 @@ const testy = async () => {
 
 }
 
+/** 
+ * Generic Query
+ * 
+*/
+const getQueryResult = async (func, query) => {
+
+  const res = await network.getQueryResult(theContract, func, query); //
+
+  const result = JSON.parse(res);
+  console.log(`${result.length} items returned`);
+  
+  // Now all items in the history object array can be accessed
+  console.log("--------------------------------------------------------------------");
+  for (var myKey in result) {
+    console.log(result[myKey].Value );
+    console.log("--------------------------------------------------------------------");
+  }
+}
+
+let queryString = '{ \
+  "selector": { \
+      "batchId": { \
+          "$eq": "4000" \
+      } \
+  } \
+}';
+
+getQueryResult( 'getQueryResult', queryString);
+
 // testy();
 
-// const keyValue = "1001";
+// const keyValue = "3401";
 // network.keyExists(theContract, 'rawmaterialExists', keyValue)  ;
 
 // network.createKeyValue(theContract, 'createRawmaterial', rawMaterialIn.batchId, JSON.stringify(rawMaterialIn));
 
 // network.updateKeyValue(theContract, 'updateRawmaterial', rawMaterialIn.batchId, JSON.stringify(rawMaterialIn));
 
-// saveRawmaterialBatch(3401, 3500);
+// saveRawmaterialBatch(1100, 2100, false);
 
 // network.deleteKeyValue(theContract, 'deleteRawmaterial','1001');
 
-// saveRawmaterialBatch(2057, 2156);
+// saveRawmaterialBatch(3616, 4000, false);
 
-network.readKeyValue(theContract, 'readRawmaterial', rawMaterialIn.batchId);
+// rawMaterialIn.batchId = "2511";
+// network.readKeyValue(theContract, 'readRawmaterial', rawMaterialIn.batchId);
 
 // network.deleteRawMaterial(rawMaterialIn.batchId);

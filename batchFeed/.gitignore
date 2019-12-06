@@ -38,6 +38,8 @@ build/Release
 
 # Dependency directories
 node_modules/
+local_fabric_wallet/
+wallet/
 jspm_packages/
 
 # TypeScript v1 declaration files
