@@ -17,6 +17,8 @@ var appAdmin = config.appAdmin;
 var orgMSPID = config.orgMSPID;
 var userName = config.userName;
 var gatewayDiscovery = config.gatewayDiscovery;
+const theWallet = config.wallet;
+const theClientPath = config.client;
 
 const ccpPath = path.join(process.cwd(), connection_file);
 const ccpJSON = fs.readFileSync(ccpPath, 'utf8');
@@ -26,7 +28,7 @@ async function main() {
   try {
 
     // Create a new file system based wallet for managing identities.
-    const walletPath = path.join(process.cwd(), 'wallet');
+    const walletPath = path.join(process.cwd(), theWallet, theClientPath);
     const wallet = new FileSystemWallet(walletPath);
     console.log(`Wallet path: ${walletPath}`);
 
@@ -54,7 +56,7 @@ async function main() {
     const adminIdentity = gateway.getCurrentIdentity();
 
     // Register the user, enroll the user, and import the new identity into the wallet.
-    const secret = await ca.register({ affiliation: 'org1.department2', enrollmentID: userName, role: 'client' }, adminIdentity);
+    const secret = await ca.register({ affiliation: '', enrollmentID: userName, role: 'client' }, adminIdentity);
     const enrollment = await ca.enroll({ enrollmentID: userName, enrollmentSecret: secret });
     const userIdentity = X509WalletMixin.createIdentity(orgMSPID, enrollment.certificate, enrollment.key.toBytes());
     wallet.import(userName, userIdentity); 

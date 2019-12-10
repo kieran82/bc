@@ -222,6 +222,23 @@ class StockContract extends Contract {
         return results;        
     } 
 
+
+    /**
+     * 
+     * @param {The contract to use} ctx 
+     * @param {An array of batch objects. There is currently no size limit
+    *  for this array, but some limit should be set. We will have to see how badly performance 
+    *  is affected.} newBatchFeed 
+    */
+    async saveArray(ctx, strArray){
+        const newBatchFeed = JSON.parse(strArray);
+        
+        for (let i = 0; i < newBatchFeed.length; i++) {
+            await ctx.stub.putState(newBatchFeed[i].stockId, Buffer.from(JSON.stringify(newBatchFeed[i])));      
+        }    
+    }
+
+
 }
 
 module.exports = StockContract;

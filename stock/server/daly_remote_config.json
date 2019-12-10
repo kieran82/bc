@@ -5,7 +5,7 @@
   "archive": "arc",
   "controlFileExtension": ".control",
   "home": "/home/jerome/Documents/sftp",
-  "connection_file": "dalychannel_daly_rawmaterials_profile.json",
+  "connection_file": "dalychannel_daly_stock_profile.json",
   "appAdmin": "daly-app-admin",
   "appAdminSecret": "daly-app-adminpw",
   "orgMSPID": "dalymsp",

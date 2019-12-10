@@ -18,6 +18,8 @@ var appAdmin = config.appAdmin;
 var appAdminSecret = config.appAdminSecret;
 var orgMSPID = config.orgMSPID;
 var caName = config.caName;
+const theWallet = config.wallet;
+const theClientPath = config.client;
 
 const ccpPath = path.join(process.cwd(), connection_file);
 const ccpJSON = fs.readFileSync(ccpPath, 'utf8');
@@ -33,7 +35,7 @@ async function main() {
     const ca = new FabricCAServices(caURL);
 
     // Create a new file system based wallet for managing identities.
-    const walletPath = path.join(process.cwd(), 'wallet');
+    const walletPath = path.join(process.cwd(), theWallet, theClientPath);
     const wallet = new FileSystemWallet(walletPath);
     console.log(`Wallet path: ${walletPath}`);
 

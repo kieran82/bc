@@ -18,5 +18,5 @@
     "enabled": true,
     "asLocalhost": false
   },
-  "batchSize":"100"
+  "batchSize":"40"
 }

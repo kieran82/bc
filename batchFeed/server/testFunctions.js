@@ -10,6 +10,7 @@ const StringBuilder = require('node-stringbuilder');
 const sb = new StringBuilder();
 const network = require('./network');
 const theContract = 'batchfeed';
+const client = 'Errigal';
 
 const batchExisting =
 {
@@ -374,7 +375,7 @@ const objToString = (number) => {
   obj.BatchId = number.toString();
   obj.LogSheetNumber = number + 23;
   obj.SupplierTraceId = number + 20057;
-  obj.Vessel = "Dreadnought" + number % 10 ? "We Haul" : "You Haul";             number.toString();
+  obj.Vessel = "Dreadnought" + number % 10 ? "Mary" : "Mary Celeste"; number.toString();
   obj.Haulier = number % 2 ? "Logistics" : "TNT";
   obj.LandingDate = getFormattedDate();
   obj.TransportCompany = number % 10 ? "We Haul" : "You Haul";
@@ -404,22 +405,109 @@ const newArray = (start, end) => {
   
 };
 
+const createBatchfeedObject = (batchId, client) => {
+  // console.log(`batchfeed ID is ${BatchId}`);
+  let batchfeedTemplate = 
+  {
+    "Number": 1,
+    "BatchId": "1001",
+    "DocType": "ErrigalBatchFeed",
+    "Vessel": "Celeste",
+    "CatchDate": "2019-06-22",
+    "LogSheetNumber": 4123,
+    "LandingDate": "2019-06-24",
+    "Port": "Union Hall",
+    "FAOArea": "Area3",
+    "FishingGear": "Large Nets",
+    "Comment": "Comment comment",
+    "Farm": "N/A",
+    "ProductionDate": "N/A",
+    "PackDate": "2019-11-30",
+    "FreezeDate": "2019-12-12",
+    "DefrostDate": "N/A",
+    "UseByDate": "2022-08-24",
+    "CountryOfOrigin": "Ireland",
+    "Temperature": -15,
+    "SupplierTraceId": 4123,
+    "TransportCompany": "N/A",
+    "Haulier": "N/A",
+    "Reference": "N/A"
+  };
+  
+  let batchfeed = {};
+  batchfeed = batchfeedTemplate;
+  batchfeed.Number = batchId;
+  batchfeed.BatchId = batchId.toString();
+  batchfeed.quantity = 899
+  batchfeed.DocType = client + 'BatchFeed';
+  // console.log(`batchfeed ID is ${batchfeed.BatchId}`);
+  return batchfeed;
+}
+
+/**
+* Create an array of batchfeed objects based on a lower and upper limit
+* @param {*} firstBatchId 
+* @param {*} lastBatchId 
+*/
+const createBatchfeedBatch = (firstBatchId, lastBatchId) => {
+  let batchArray = [];
+
+  for(let i = firstBatchId; i <= lastBatchId; i++) {
+    let obj = {};
+    obj = createBatchfeedObject(i, client);
+    batchArray.push(obj);
+    // console.log(JSON.stringify(obj));
+    
+  }  
+
+  // for (let i = 0; i < batchArray.length; i++) {
+  //   console.log(`${batchArray[i].DocType} `);   
+  // }      
+
+  return batchArray;
+}  
+
+/**
+* Create and save a batch of batchfeeds identified by the range of numbers given
+* @param {The first number in the BatchId range} firstBatchId 
+* @param {the last number in the BatchId range} lastBatchId 
+*/
+const saveBatchfeedBatch = async (firstBatchId, lastBatchId, inIncrements) => {
+  let counter = 0;
+  //saveArray
+  let batchArray = [];
+  batchArray = createBatchfeedBatch(firstBatchId, lastBatchId);
+  console.log(`batchArray length is ${batchArray.length}`);
+
+  if (inIncrements === true){
+    await network.saveArrayOneAtATime(theContract, 'createBatchFeed', batchArray);
+  }
+  else {
+    await network.saveArrayInSegments(theContract, 'saveArray', batchArray);
+  }
+
+}
+
 let queryString = '{ \
   "selector": { \
       "BatchId": { \
-          "$eq": "21401" \
+          "$eq": "37148" \
       } \
   } \
 }';
 
-// const arr = newArray(21403, 21803);
+// const arr = newArray(6400, 7400);
 // saveArray(theContract, 'saveArray', arr);
 
-getQueryResult( 'getQueryResult', queryString);
+saveBatchfeedBatch(400001, 401001, true);
+
+// createBatchfeedBatch(104, 203);
+
+// getQueryResult( 'getQueryResult', queryString);
 
 // getStateByRange(theContract, 'getStateByRange', '21400', '21402');
 
-// getHistory(theContract, 'getHistoryForKey', '21003');
+// getHistory(theContract, 'getHistoryForKey', '1001');
 
 // testArray(newBatchFeed);
 
@@ -428,4 +516,4 @@ getQueryResult( 'getQueryResult', queryString);
 // objToString(3001);
 //  newArray(3000, 4000);
 
-// network.readKeyValue(theContract, 'readBatchFeed', "20400");
+// network.readKeyValue(theContract, 'readBatchFeed', "101");

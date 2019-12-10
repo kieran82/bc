@@ -8,7 +8,7 @@ const fs = require('fs');
 const path = require('path');
 const StringBuilder = require('node-stringbuilder');
 const sb = new StringBuilder();
-const theContract = 'errigal_rawmaterials';
+const theContract = 'daly_rawmaterials';
 
 const network = require('./network');
 
@@ -148,7 +148,7 @@ let queryString = '{ \
   } \
 }';
 
-getQueryResult( 'getQueryResult', queryString);
+// getQueryResult( 'getQueryResult', queryString);
 
 // testy();
 
@@ -163,7 +163,7 @@ getQueryResult( 'getQueryResult', queryString);
 
 // network.deleteKeyValue(theContract, 'deleteRawmaterial','1001');
 
-// saveRawmaterialBatch(3616, 4000, false);
+saveRawmaterialBatch(15001, 16000, true);
 
 // rawMaterialIn.batchId = "2511";
 // network.readKeyValue(theContract, 'readRawmaterial', rawMaterialIn.batchId);

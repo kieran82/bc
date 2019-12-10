@@ -304,9 +304,10 @@ exports.saveArray = async (contractName, func, newBatchFeed) => {
     await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
     const network = await gateway.getNetwork(theChannel);
     const contract = network.getContract(contractName);
+    let strArray = JSON.stringify(newBatchFeed);  
 
     // Submit the specified transaction.
-    await contract.submitTransaction(func, newBatchFeed);
+    await contract.submitTransaction(func, strArray);
 
     // Disconnect from the gateway.
     await gateway.disconnect();
@@ -315,6 +316,42 @@ exports.saveArray = async (contractName, func, newBatchFeed) => {
     console.error(`Failed to submit transaction: ${error}`);
   }
 
+}
+
+exports.saveArrayOneAtATime = async (contractName, func, newBatchFeed) => {
+
+  try {
+
+    const wallet = getWallet();
+    const exists = await wallet.exists(userName);    
+
+    if (!exists) {
+      console.log(`An identity for the user ${userName} does not exist in the wallet`);
+      return;
+    }
+
+    // Get the contract from the network.
+    const gateway = new Gateway();
+    await gateway.connect(ccp, { wallet, identity: userName, discovery: gatewayDiscovery });
+    const network = await gateway.getNetwork(theChannel);
+    const contract = network.getContract(contractName);
+
+    console.log(newBatchFeed.length);
+
+    for (let i = 0; i < newBatchFeed.length; i++) {
+      console.log(`${newBatchFeed[i].BatchId} and ${JSON.stringify(newBatchFeed[i])}`);         
+      await contract.submitTransaction(func, newBatchFeed[i].BatchId, JSON.stringify(newBatchFeed[i]));
+    }        
+
+    // Submit the specified transaction.
+    // await contract.submitTransaction(func, strArray);
+
+    // Disconnect from the gateway.
+    await gateway.disconnect();
+
+  } catch (error) {
+    console.error(`Failed to submit transaction: ${error}`);
+  }
 }
 
 exports.saveArrayInSegments = async (contractName, func, newBatchFeed) => {
@@ -368,9 +405,10 @@ exports.saveArrayInSegments = async (contractName, func, newBatchFeed) => {
     // await contract.submitTransaction(func, newBatchFeed);
 
     // Disconnect from the gateway.
-    await gateway.disconnect();
+    gateway.disconnect();
 
   } catch (error) {
+    gateway.disconnect();
     console.error(`Failed to submit transaction: ${error}`);
   }
 
