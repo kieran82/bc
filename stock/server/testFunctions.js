@@ -325,12 +325,12 @@ const indexQry = '{\
 }\
 }';
 
-getQueryResult(qry);
+// getQueryResult(qry);
 
 // const arr = newArray(110, 121);
 // saveArray(theContract, 'saveArray', arr);
 
-saveStockBatch(5001, 6000, false);
+saveStockBatch(7001, 8001, true);
 
 
 

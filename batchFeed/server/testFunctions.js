@@ -440,6 +440,7 @@ const createBatchfeedObject = (batchId, client) => {
   batchfeed.BatchId = batchId.toString();
   batchfeed.quantity = 899
   batchfeed.DocType = client + 'BatchFeed';
+  batchfeed.Vessel = batchId % 2 == 0 ? "Mary" : "Mary Celeste";
   // console.log(`batchfeed ID is ${batchfeed.BatchId}`);
   return batchfeed;
 }
@@ -499,7 +500,7 @@ let queryString = '{ \
 // const arr = newArray(6400, 7400);
 // saveArray(theContract, 'saveArray', arr);
 
-saveBatchfeedBatch(400001, 401001, true);
+saveBatchfeedBatch(402005, 403000, true);
 
 // createBatchfeedBatch(104, 203);
 
