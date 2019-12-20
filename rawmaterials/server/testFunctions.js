@@ -14,7 +14,7 @@ const network = require('./network');
 
 const rawMaterialIn = 
   {
-    batchId: '2511',
+    batchId: '1001',
     docType: 'materials',
     certified: 'Yes',
     supplierId: '1001',
@@ -163,9 +163,9 @@ let queryString = '{ \
 
 // network.deleteKeyValue(theContract, 'deleteRawmaterial','1001');
 
-saveRawmaterialBatch(15001, 16000, true);
+// saveRawmaterialBatch(15001, 16000, true);
 
 // rawMaterialIn.batchId = "2511";
-// network.readKeyValue(theContract, 'readRawmaterial', rawMaterialIn.batchId);
+network.readKeyValue(theContract, 'readRawmaterial', "4000");
 
 // network.deleteRawMaterial(rawMaterialIn.batchId);

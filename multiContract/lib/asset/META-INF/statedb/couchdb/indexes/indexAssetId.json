@@ -1,0 +1,10 @@
+{
+  "index": {
+    "fields": [
+      "AssetId"
+    ]
+  },
+  "ddoc": "indexAssetIdDoc",
+  "name": "indexAssetId",
+  "type": "json"
+}

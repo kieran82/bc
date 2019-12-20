@@ -13,55 +13,43 @@ const network = require('./network');
 // const rawmaterials = require('./rawmaterials_network');
 // const orders = require('./orders_network');
 // const tests = require('./tests_network');
+const theAssetSaleContract = 'asset-sale';
+const theAssetContract = 'asset';
+const theClientContract = 'client'
+const theClient = 'Errigal';
 
-const rawMaterial =
-{
-  batchId: '1015',
-  docType: 'materials',
-  certified: 'Maybe',
-  supplierId: '0001',
-  quantity: 1000,
-  qtyUnitMeasurement: 'Kg',
-  product: 'Organically Salmony perhaps',
-  dateReceived: '2019-07-07'
-};
 
-const newStock = 
+  const assetSale = 
   {
-    stockId: '102',
-    docType: 'stockLevel',
-    sourceBatchId: 1122,
-    supplierId: '0001',
-    sourceBatchQuantity: 112,
-    qtyUnitMeasurement: 'Kg',
-    dateProcessed: '2019-09-08',
-    testResultId: '20190910',
+    "Number": 7,
+    "AssetSaleId": "AS1002",
+    "AssetId": "AS1007",
+    "DocType":"AssetSale-Ledger",
+    "AssetOwnerId": "1001",
+    "AssetBuyerId": "1003",
+    "Comment": "NoComment boo!",
+    "TransactionCompletionDate": "01-12-2019",
+    "RequestDate": "12-12-2019",
+    "Price": 21.18            
   };
 
-const newOrder = 
+  const client = 
   {
-    orderId: '1014',
-    docType: 'foodOrder',
-    despatchDate: '2019-09-20',
-    dateReceived: '2019-09-20',
-    buyerId: '002',
-    quantity: 752,
-    qtyUnitMeasurement: 'Kg',
-    processUsed: 'Smoking Hot',
-    orderLines: [
-      { orderLine: 1, sourceBatchId: '1011', tested: 'Yes', quantity: 500, qtyUnitMeasurement: 'Kg' },
-      { orderLine: 2, sourceBatchId: '1021', tested: 'Yes', quantity: 250, qtyUnitMeasurement: 'Kg' },
-    ],
-  }; 
+    "Number": 4,
+    "ClientId": "1003",  
+    "DocType": "Client-Ledger",                             
+    "Comment": "Hello there client! Tally Ho Number 4",
+    "Funds": 5000          
+  };    
 
-const testResults = 
+  const asset = 
   {
-    testResultId: 'T114',
-    docType: 'testResult',
-    client: 'Shanagarry',
-    typeOfTest: 'really good stuffing',
-    result: '123'
-  }; 
+    "Number": 1,
+    "AssetId": "A107",  
+    "DocType": "Asset-Ledger",                             
+    "Comment": "Tally Ho",
+    "Price": 300         
+  };
 
 
 
@@ -79,19 +67,44 @@ const testResults =
 /** Create new Blocks */
 // network.createKeyValue('rawmaterials', 'createRawmaterial', rawMaterial.batchId, JSON.stringify(rawMaterial));
 
-// network.createKeyValue('stock', 'createStock', newStock.stockId, JSON.stringify(newStock));
+// network.createKeyValue(theAssetSaleContract, 'createKeyValue', assetSale.AssetSaleId, JSON.stringify(assetSale));
 
-// network.createKeyValue('orders', 'createOrder', newOrder.orderId, JSON.stringify(newOrder));
+// network.createKeyValue(theAssetContract, 'createKeyValue', asset.AssetId, JSON.stringify(asset));
 
-// network.createKeyValue('ProductTests', 'createProductTests', testResults.testResultId, JSON.stringify(testResults));
+// network.createKeyValue(theClientContract, 'createKeyValue', client.ClientId, JSON.stringify(client));
 
 /** Read Blocks */
 
-// network.readKeyValue('rawmaterials', 'readRawmaterial', rawMaterial.batchId);
+// network.readKeyValue('client', 'readKeyValue', "1001");
 
 // network.readKeyValue('stock', 'readStock', newStock.stockId);
 
-// network.readKeyValue('orders', 'readOrder', newOrder.orderId);
+// console.log(assetSale.AssetSaleId);
+
+// network.crossChannelRead (theAssetSaleContract, 'crossChannelRead', client.ClientId, 'client');
+
+// const values = [];
+// const contractToCall = 'client';
+// const channel = 'mychannel';
+
+// values.push('createKeyValue');
+// values.push(client.ClientId);
+// values.push(JSON.stringify(client));
+
+// network.parameterisedCrossChannelCall(theAssetSaleContract, 'parameterisedCrossChannelCall', values, channel);
+
+ network.exchangeAsset(theAssetSaleContract, 'exchangeAsset', assetSale.AssetSaleId, assetSale.AssetBuyerId);
+// console.log(res.toString());
+
+
+
+// obj = JSON.parse(res.toString());
+// console.log(JSON.stringify(obj));
+
+
+// network.readKeyValue(theAssetSaleContract, 'readKeyValue', "AS1002");
+// network.readKeyValue(theAssetContract, 'readKeyValue', asset.AssetId);
+// network.readKeyValue(theClientContract, 'readKeyValue', client.ClientId);
 
 // network.readKeyValue('ProductTests', 'readProductTests', testResults.testResultId);
 
@@ -173,4 +186,4 @@ const getStateByRange = async (contractName, func, startId, endId) => {
 
 }
 
-getStateByRange('stock', 'getStateByRange', '102', '');
+// getStateByRange('stock', 'getStateByRange', '102', '');

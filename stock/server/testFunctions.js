@@ -111,7 +111,7 @@ const testytesty = async () => {
 
 const getRange = async (startId, endId) => {
 
-  const res = await network.getStateByRange(startId, endId); //
+  const res = await network.getStateByRange(theContract, 'getStateByRange', startId, endId); //
   const result = JSON.parse(res);
   // console.log(result);
 
@@ -291,7 +291,7 @@ const saveStockBatch = async (firstStockId, lastStockId, inIncrements) => {
 // network.getStateByRange(theContract, 'getStateByRange', '101', '104' )
 
 
-// getRange( '101', '107');
+// getRange( '7990', '8001');
 
 // getHistory(theContract, 'getHistoryForKey', '21003');
 
@@ -309,11 +309,17 @@ const saveStockBatch = async (firstStockId, lastStockId, inIncrements) => {
 
 // getQueryResult("{\r\n   \"selector\": {\r\n          \"sourceBatchQuantity\": {\r\n         \"$gte\": 100\r\n      }\r\n   }\r\n}");
 
+// const qry = '{ \
+//   "selector": { \
+//     "stockId": { \
+//       "$gte": "8000" \
+//     }\
+//   }\
+// }';
+
 const qry = '{ \
   "selector": { \
-    "stockId": { \
-      "$eq": "2998" \
-    }\
+    "stockId": "8000" \
   }\
 }';
 
@@ -325,12 +331,12 @@ const indexQry = '{\
 }\
 }';
 
-// getQueryResult(qry);
+getQueryResult(qry);
 
 // const arr = newArray(110, 121);
 // saveArray(theContract, 'saveArray', arr);
 
-saveStockBatch(7001, 8001, true);
+// saveStockBatch(7001, 8001, true);
 
 
 

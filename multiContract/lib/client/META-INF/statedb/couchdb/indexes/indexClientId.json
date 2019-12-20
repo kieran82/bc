@@ -1,0 +1,10 @@
+{
+  "index": {
+    "fields": [
+      "ClientId"
+    ]
+  },
+  "ddoc": "indexClientIdDoc",
+  "name": "indexClientIdD",
+  "type": "json"
+}
