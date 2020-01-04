@@ -15,18 +15,18 @@ const network = require('./network');
 
 const order = 
   {
-    'orderId': '1004',
+    'orderId': '1006',
     'docType': 'foodOrder',
-    'despatchDate': '2019-10-20',
-    'dateReceived': '2019-10-20',
+    'despatchDate': '2019-12-20',
+    'dateReceived': '2019-12-20',
     'buyerId': '1001',
-    'quantity': 855,
+    'quantity': 555,
     'qtyUnitMeasurement': 'Kg',
     'processUsed': 'Smoking',
     'orderLines': [
       {
-      'orderLine': 1, 'sourceorderId': '101', 'tested': 'Yes', 'quantity': 510, 'qtyUnitMeasurement': 'Kg' },
-      { 'orderLine': 2, 'sourceorderId': '102', 'tested': 'Yes', 'quantity': 217, 'qtyUnitMeasurement': 'Kg' },
+      'orderLine': 1, 'sourceorderId': '101', 'tested': 'Yes', 'quantity': 310, 'qtyUnitMeasurement': 'Kg' },
+      { 'orderLine': 2, 'sourceorderId': '102', 'tested': 'Yes', 'quantity': 137, 'qtyUnitMeasurement': 'Kg' },
     ],
   };
 
@@ -144,9 +144,9 @@ const testy = async () => {
 // testy();
 
 
-// network.keyExists(theContract, 'orderExists', '1003')  ;
+// network.keyExists(theContract, 'orderExists', '1004')  ;
 
-network.createKeyValue(theContract, 'createOrder', order.orderId, JSON.stringify(order));
+// network.createKeyValue(theContract, 'createOrder', order.orderId, JSON.stringify(order));
 
 // network.updateKeyValue(theContract, 'updateOrder', order.orderId, JSON.stringify(order));
 
@@ -156,7 +156,7 @@ network.createKeyValue(theContract, 'createOrder', order.orderId, JSON.stringify
 
 // saveOrderBatch(2057, 2156);
 
-// network.readKeyValue(theContract, 'readOrder', "1001");
+network.readKeyValue(theContract, 'readOrder', order.orderId);
 
 // const str = createOrderBatch(2000, 2010);
 // console.log(str);

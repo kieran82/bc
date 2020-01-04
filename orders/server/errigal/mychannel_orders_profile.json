@@ -1,0 +1,92 @@
+{
+    "name": "mychannel",
+    "description": "Network on IBP v2",
+    "version": "1.0.0",
+    "client": {
+        "organization": "errigalmsp"
+    },
+    "organizations": {
+        "aldimsp": {
+            "mspid": "aldimsp",
+            "peers": [
+                "n56f2da-aldipeer.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud:7051"
+            ]
+        },
+        "dalymsp": {
+            "mspid": "dalymsp",
+            "peers": [
+                "n56f2da-dalypeer.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud:7051"
+            ]
+        },
+        "errigalmsp": {
+            "mspid": "errigalmsp",
+            "peers": [
+                "n56f2da-errigalpeer.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud:7051"
+            ],
+            "certificateAuthorities": [
+                "n56f2da-errigalca.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud:7054"
+            ]
+        },
+        "sdlmmsp": {
+            "mspid": "sdlmmsp",
+            "peers": [
+                "n56f2da-sdlmpeer.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud:7051"
+            ]
+        }
+    },
+    "orderers": {
+        "n56f2da-orderer1.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud:7050": {
+            "url": "grpcs://n56f2da-orderer1.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud:7050",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICIjCCAcigAwIBAgIUfxsvX/7MqrItLE7Z1g5WsOu3bNkwCgYIKoZIzj0EAwIw\nZTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRYwFAYDVQQDEw1PcmRlcmVy\nQ0EtdGxzMB4XDTIwMDEwMjE1NTYwMFoXDTM0MTIyOTE1NTYwMFowZTELMAkGA1UE\nBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBlcmxl\nZGdlcjEPMA0GA1UECxMGRmFicmljMRYwFAYDVQQDEw1PcmRlcmVyQ0EtdGxzMFkw\nEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEr7I7LHjDOBPTGYsTJ2Lo12sYr6p/cDMj\nWJuQQRr9zO6LHt01wKqaE6I8THioDCcnXptTrmQMmFrLa+dR9Rw8QaNWMFQwDgYD\nVR0PAQH/BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYEFCU08Rwf\nUdmECYKz1jpiQVmyC+cGMA8GA1UdEQQIMAaHBArChmYwCgYIKoZIzj0EAwIDSAAw\nRQIhAOryNmn4tJNiVv8rSlDLzgrd2iL5Vj8FsgEc02z4fZ0pAiBuOeV1dodlAjFu\ndyGOSt2HDcsmu7PO6613Mli9zj+F9w==\n-----END CERTIFICATE-----\n"
+            }
+        }
+    },
+    "peers": {
+        "n56f2da-aldipeer.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud:7051": {
+            "url": "grpcs://n56f2da-aldipeer.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICHDCCAcKgAwIBAgIUP/8UgtW9lpziwsBmOYQk4/BsjnkwCgYIKoZIzj0EAwIw\nYjELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRMwEQYDVQQDEwpBbGRpQ0Et\ndGxzMB4XDTIwMDEwMjE0NTYwMFoXDTM0MTIyOTE0NTYwMFowYjELMAkGA1UEBhMC\nVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBlcmxlZGdl\ncjEPMA0GA1UECxMGRmFicmljMRMwEQYDVQQDEwpBbGRpQ0EtdGxzMFkwEwYHKoZI\nzj0CAQYIKoZIzj0DAQcDQgAEZ1/CvVh6nOMhY10fm75HlMC+UlNLQC9SRyPBuXdw\njEOCa2Sl7SEmSkAhbsYY5j52jg8aKS+dXz/v4tRqNz7DLKNWMFQwDgYDVR0PAQH/\nBAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYEFCtQKbX1IIPCvZoB\nHTNyVqrCojTBMA8GA1UdEQQIMAaHBArChmYwCgYIKoZIzj0EAwIDSAAwRQIhAIsA\nkZwwjKp3a6opGDXzZlEL1hnnfcfzJwY2/d+My4cHAiBnAG50wykQd8y/B5vla6/F\nAwrX34Rf7L6DNmT7UI4jog==\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "n56f2da-aldipeer.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud"
+            }
+        },
+        "n56f2da-dalypeer.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud:7051": {
+            "url": "grpcs://n56f2da-dalypeer.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICGzCCAcKgAwIBAgIUQ4M/t6Rm0B8H8RVTgh9st5dRbJ8wCgYIKoZIzj0EAwIw\nYjELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRMwEQYDVQQDEwpEYWx5Q0Et\ndGxzMB4XDTIwMDEwMjE0NTUwMFoXDTM0MTIyOTE0NTUwMFowYjELMAkGA1UEBhMC\nVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBlcmxlZGdl\ncjEPMA0GA1UECxMGRmFicmljMRMwEQYDVQQDEwpEYWx5Q0EtdGxzMFkwEwYHKoZI\nzj0CAQYIKoZIzj0DAQcDQgAEois3HfS8j2r+jNYjz3VPnlQfPL05GTfMpWmkUw8v\nUUlt/lmvaCrGAsUIkZwSIgQOdWOHO6IWtg4ULa82euAyS6NWMFQwDgYDVR0PAQH/\nBAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYEFM9EdSZ7TPalZLUX\nL0lfTcdhBhLXMA8GA1UdEQQIMAaHBArChmYwCgYIKoZIzj0EAwIDRwAwRAIgN3rs\nysU3XsYAG1DHHMS/0HRVWx4wbEUv4jnUC9eiisgCIH+QpKdggn/U6NftbrVUbTOB\nuBKSnFa8bhSgIBOodRfn\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "n56f2da-dalypeer.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud"
+            }
+        },
+        "n56f2da-sdlmpeer.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud:7051": {
+            "url": "grpcs://n56f2da-sdlmpeer.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICHDCCAcKgAwIBAgIUPp0iG0waiJHsRtAOiaAYYm1hUAcwCgYIKoZIzj0EAwIw\nYjELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRMwEQYDVQQDEwpTRExNQ0Et\ndGxzMB4XDTIwMDEwMjE0NTYwMFoXDTM0MTIyOTE0NTYwMFowYjELMAkGA1UEBhMC\nVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBlcmxlZGdl\ncjEPMA0GA1UECxMGRmFicmljMRMwEQYDVQQDEwpTRExNQ0EtdGxzMFkwEwYHKoZI\nzj0CAQYIKoZIzj0DAQcDQgAEpB9Don8aZVeUumeo+/Bn6VIklBpG4Wp5YjE0JPaA\nAftsNLMeR3SbGzPbUidAS22Axaaq6BrS/UHbd91jSln0/aNWMFQwDgYDVR0PAQH/\nBAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYEFLwdXe1cy+hDYudJ\nm4vpIZRJ04HnMA8GA1UdEQQIMAaHBArChmYwCgYIKoZIzj0EAwIDSAAwRQIhAOlr\n9ZVC7CDU0qxrHbG4l2XCsnxGgHOixwrsd/+rOtouAiADGHYVZqujrxhVF8ON0jz3\nEEaR7wZ7J4VbPSf7LnAWTg==\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "n56f2da-sdlmpeer.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud"
+            }
+        },
+        "n56f2da-errigalpeer.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud:7051": {
+            "url": "grpcs://n56f2da-errigalpeer.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICITCCAcigAwIBAgIUGPeZF7K/sKpfRRkjDkqOk3NYLBIwCgYIKoZIzj0EAwIw\nZTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRYwFAYDVQQDEw1FcnJpZ2Fs\nQ0EtdGxzMB4XDTIwMDEwMjE0NTMwMFoXDTM0MTIyOTE0NTMwMFowZTELMAkGA1UE\nBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBlcmxl\nZGdlcjEPMA0GA1UECxMGRmFicmljMRYwFAYDVQQDEw1FcnJpZ2FsQ0EtdGxzMFkw\nEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAECHf8flB/JkwHE/UWatlPQ2uVdYvLXs/z\nihjCXC7UWuuih6xvWHcdZT5qelr6Bo4s54oriZOCh5LbFmXKue0KmKNWMFQwDgYD\nVR0PAQH/BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYEFHXf2Qb0\ntNsSDJFx+I3IlzjZN8mIMA8GA1UdEQQIMAaHBArChmYwCgYIKoZIzj0EAwIDRwAw\nRAIgLntf6DfkyXhL+sPs9Gy6GEtyA/UNsuMepoA5xSBZ7sACIDrTX4+3Jfnhhznx\nQFPhfQkmD1Vwg+qQHXT8xPpzd4ae\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "n56f2da-errigalpeer.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "n56f2da-errigalca.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud:7054": {
+            "url": "https://n56f2da-errigalca.mycluster-911441-2d83d0e98cbf95c4b12e153a5aafff40-0000.eu-de.containers.appdomain.cloud:7054",
+            "caName": "ca",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\r\nMIIDljCCAv+gAwIBAgIJSAoxKE/GOsp/MA0GCSqGSIb3DQEBBQUAMIHPMXIwcAYD\r\nVQQDE2luNTZmMmRhLWVycmlnYWxjYS5teWNsdXN0ZXItOTExNDQxLTJkODNkMGU5\r\nOGNiZjk1YzRiMTJlMTUzYTVhYWZmZjQwLTAwMDAuZXUtZGUuY29udGFpbmVycy5h\r\ncHBkb21haW4uY2xvdWQxCzAJBgNVBAYTAlVTMRcwFQYDVQQIEw5Ob3J0aCBDYXJv\r\nbGluYTEQMA4GA1UEBxMHUmFsZWlnaDEMMAoGA1UEChMDSUJNMRMwEQYDVQQLEwpC\r\nbG9ja2NoYWluMB4XDTIwMDEwMjE0NTU0MloXDTIxMDEwMTE0NTU0Mlowgc8xcjBw\r\nBgNVBAMTaW41NmYyZGEtZXJyaWdhbGNhLm15Y2x1c3Rlci05MTE0NDEtMmQ4M2Qw\r\nZTk4Y2JmOTVjNGIxMmUxNTNhNWFhZmZmNDAtMDAwMC5ldS1kZS5jb250YWluZXJz\r\nLmFwcGRvbWFpbi5jbG91ZDELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENh\r\ncm9saW5hMRAwDgYDVQQHEwdSYWxlaWdoMQwwCgYDVQQKEwNJQk0xEzARBgNVBAsT\r\nCkJsb2NrY2hhaW4wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAJ0scpJGXiyj\r\nxSMsbuuBEOfvEL6sQRmdSjLhNeLAvIiT4aCOy28lg45pvRKa0q9/gWiLFWKnAnDm\r\nRME33SVbqY4N0HzygXkljrrCwb5QxGXPf/muzRDut4dz750lWCHXd25FcHKhe7XO\r\ntXHbQ0B8zd90duW52L2VEbOnRd3WQ0pRAgMBAAGjeDB2MHQGA1UdEQRtMGuCaW41\r\nNmYyZGEtZXJyaWdhbGNhLm15Y2x1c3Rlci05MTE0NDEtMmQ4M2QwZTk4Y2JmOTVj\r\nNGIxMmUxNTNhNWFhZmZmNDAtMDAwMC5ldS1kZS5jb250YWluZXJzLmFwcGRvbWFp\r\nbi5jbG91ZDANBgkqhkiG9w0BAQUFAAOBgQAoRMmiQkr3I5PtzPga9gqhRg93Q2mj\r\ndH83IaAjPfAE/uhkrl08WNYJJ3854M2KPC13kAEZpl6Cybvlg6l9+jhM2ZO/GznP\r\nKqN9e2edGwNwYPlH5jok2LF73vkSFjMizxMlv052htn/++xLIOIW1k9SfV6idAdo\r\nPLl7ooFXr8u6qQ==\r\n-----END CERTIFICATE-----\r\n"
+            }
+        }
+    }
+}
