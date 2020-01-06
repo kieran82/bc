@@ -15,7 +15,7 @@ const network = require('./network');
 
 const order = 
   {
-    'orderId': '1003',
+    'orderId': '1004',
     'docType': 'foodOrder',
     'despatchDate': '2019-09-20',
     'dateReceived': '2019-09-20',
@@ -44,7 +44,7 @@ const createOrderObject = (orderId) => {
   // console.log(`Order ID is ${orderId}`);
   let orderTemplate = 
   {
-    'orderId': '1003',
+    'orderId': '1004',
     'docType': 'foodOrder',
     'despatchDate': '2019-11-20',
     'dateReceived': '2019-11-22',
@@ -144,9 +144,9 @@ const testy = async () => {
 // testy();
 
 
-network.keyExists(theContract, 'orderExists', '1001')  ;
-
-// network.createKeyValue(theContract, 'createOrder', order.orderId, JSON.stringify(order));
+// network.keyExists(theContract, 'orderExists', '1001')  ;
+let newOrd = createOrderObject("1006");
+network.createKeyValue(theContract, 'createOrder', newOrd.orderId, JSON.stringify(newOrd));
 
 // network.updateKeyValue(theContract, 'updateOrder', order.orderId, JSON.stringify(order));
 

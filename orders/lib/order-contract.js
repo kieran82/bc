@@ -158,8 +158,8 @@ class OrderContract extends Contract {
         if (exists) {
             throw new Error(`The order ${orderId} already exists`);
         }
-        const asset = { value };
-        const buffer = Buffer.from(JSON.stringify(asset));
+
+        const buffer = Buffer.from(value);
         await ctx.stub.putState(orderId, buffer);
     }
 
@@ -173,13 +173,13 @@ class OrderContract extends Contract {
         return asset;
     }
 
-    async updateOrder(ctx, orderId, newValue) {
+    async updateOrder(ctx, orderId, value) {
         const exists = await this.orderExists(ctx, orderId);
         if (!exists) {
             throw new Error(`The order ${orderId} does not exist`);
         }
-        const asset = { value: newValue };
-        const buffer = Buffer.from(JSON.stringify(asset));
+        
+        const buffer = Buffer.from(value);
         await ctx.stub.putState(orderId, buffer);
     }
 

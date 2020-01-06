@@ -12,10 +12,8 @@
   "caName": "ca.org1.example.com",
   "userName": "User1@org1.example.com",
   "wallet": "/local_fabric_wallet",
-  "channel": "mychannel",
   "gatewayDiscovery": {
-    "enabled": true,
-    "asLocalhost": false
+    "enabled": false
   },
   "batchSize": "5"
 }
