@@ -155,12 +155,30 @@ class OrderContract extends Contract {
 
     async createOrder(ctx, orderId, value) {
         const exists = await this.orderExists(ctx, orderId);
+
         if (exists) {
             throw new Error(`The order ${orderId} already exists`);
         }
 
+
+        let order = {};
+        order = JSON.parse(value);
+
         const buffer = Buffer.from(value);
         await ctx.stub.putState(orderId, buffer);
+
+        // define and set orderEvent
+        let orderEvent = {
+            type: "New Order",
+            ownerId: order.buyerId,
+            id: order.orderId,
+            description: order.processUsed,
+            status: "Saved...",
+            amount: order.quantity,
+            orderLines: order.orderLines
+        };
+   
+        await ctx.stub.setEvent('orderEvent', Buffer.from(JSON.stringify(orderEvent)));        
     }
 
     async readOrder(ctx, orderId) {
@@ -174,13 +192,30 @@ class OrderContract extends Contract {
     }
 
     async updateOrder(ctx, orderId, value) {
+
         const exists = await this.orderExists(ctx, orderId);
+        
         if (!exists) {
             throw new Error(`The order ${orderId} does not exist`);
         }
         
         const buffer = Buffer.from(value);
         await ctx.stub.putState(orderId, buffer);
+
+        let order = JSON.parse(value);
+
+        // define and set orderEvent
+        let orderEvent = {
+            type: "Order Update",
+            ownerId: order.buyerId,
+            id: order.orderId,
+            description: order.processUsed,
+            status: "Updated...",
+            amount: order.quantity,
+            orderLines: order.orderLines
+        };
+   
+        await ctx.stub.setEvent('orderEvent', Buffer.from(JSON.stringify(orderEvent)));            
     }
 
 

@@ -145,8 +145,8 @@ const testy = async () => {
 
 
 // network.keyExists(theContract, 'orderExists', '1001')  ;
-let newOrd = createOrderObject("1006");
-network.createKeyValue(theContract, 'createOrder', newOrd.orderId, JSON.stringify(newOrd));
+let newOrder = createOrderObject("1010");
+network.createOrder(newOrder.orderId, JSON.stringify(newOrder));
 
 // network.updateKeyValue(theContract, 'updateOrder', order.orderId, JSON.stringify(order));
 

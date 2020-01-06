@@ -436,3 +436,26 @@ exports.fileToBlockchain = async (jsonFilePath) => {
 }
 
 
+exports.createOrder = async(orderId, value) => {
+
+  console.log(`This is the order ID ${orderId}`);
+  
+  // let order = {};
+  let order = JSON.parse(value.toString());
+  console.log(`This is the order \n${order.orderId}`);
+
+  // define and set orderEvent
+  let orderEvent = {
+      type: "New Order",
+      ownerId: order.buyerId,
+      id: order.orderId,
+      description: order.processUsed,
+      status: "Saved...",
+      amount: order.quantity,
+      orderLines: order.orderLines
+  };
+
+  console.log(orderEvent);
+  
+       
+}
