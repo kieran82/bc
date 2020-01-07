@@ -68,27 +68,23 @@ const main = async () => {
       event = event.payload.toString();
       event = JSON.parse(event);
 
-      // orderId: '1001',
-      // docType: 'foodOrder',
-      // despatchDate: '2019-07-20',
-      // dateReceived: '2019-07-20',
-      // buyerId: '0001',
-      // quantity: 750,
-      // qtyUnitMeasurement: 'Kg',
-      // processUsed: 'Smoking',
-      // orderLines: [
-      //     { orderLine: 1, sourceBatchId: '101', tested: 'Yes', quantity: 500, qtyUnitMeasurement: 'Kg'},
+      // type: 'Order Update',
+      // ownerId: 'Jerome',
+      // id: 'jomie',
+      // description: 'Description...',
+      // status: "Updated...",
+      // amount: 20,
+      // orderLines: []
                 
 
       //where we output the TradeEvent
       console.log('************************ Start Order Event *******************************************************');
       console.log(`type: ${event.type}`);
-      console.log(`ownerId: ${event.buyerId}`);
-      console.log(`id: ${event.orderId}`);
-      console.log(`description: ${event.processUsed}`);
+      console.log(`ownerId: ${event.ownerId}`);
+      console.log(`id: ${event.id}`);
+      console.log(`description: ${event.description}`);
       console.log(`status: ${event.status}`);
-      console.log(`amount: ${event.quantity}`);
-      console.log(`buyerId: ${event.buyerId}`);
+      console.log(`amount: ${event.amount}`);
       console.log(`Block Number: ${blockNumber} Transaction ID: ${transactionId} Status: ${status}`);
       console.log('************************ End Order Event ************************************');
     });  

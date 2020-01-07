@@ -62,7 +62,7 @@ const createOrderObject = (orderId) => {
   let order = {};
   order = orderTemplate;
   order.orderId = orderId;
-  order.quantity = 899
+  order.quantity = 90210;
   // console.log(`Order ID is ${order.orderId}`);
   return order;
 }
@@ -145,10 +145,11 @@ const testy = async () => {
 
 
 // network.keyExists(theContract, 'orderExists', '1001')  ;
-let newOrder = createOrderObject("1010");
-network.createOrder(newOrder.orderId, JSON.stringify(newOrder));
+let newOrder = createOrderObject("1003");
+// network.createKeyValue(theContract, 'createOrder', newOrder.orderId, JSON.stringify(newOrder));
+// network.createOrder( newOrder.orderId, JSON.stringify(newOrder));
 
-// network.updateKeyValue(theContract, 'updateOrder', order.orderId, JSON.stringify(order));
+network.updateKeyValue(theContract, 'updateOrder', newOrder.orderId, JSON.stringify(newOrder));
 
 // createOrders(2000, 2010);
 
