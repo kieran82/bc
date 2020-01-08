@@ -13,7 +13,7 @@ const theContract = 'orders';
 
 const network = require('./network');
 
-const order = 
+let order = 
   {
     'orderId': '1004',
     'docType': 'foodOrder',
@@ -138,6 +138,12 @@ const testy = async () => {
 
 }
 
+const read = async(order) => {
+  order = await network.readKeyValue(theContract, 'readOrder', order);
+  order = JSON.parse(order);
+  console.log(`This is the order quatity ${order.quantity}`);
+}
+
 /**
  * Test harness for displaying transaction history
  */
@@ -145,11 +151,13 @@ const testy = async () => {
 
 
 // network.keyExists(theContract, 'orderExists', '1001')  ;
-let newOrder = createOrderObject("1003");
+let newOrder = createOrderObject("1011");
+newOrder.quantity = 11.11;
 // network.createKeyValue(theContract, 'createOrder', newOrder.orderId, JSON.stringify(newOrder));
 // network.createOrder( newOrder.orderId, JSON.stringify(newOrder));
 
 network.updateKeyValue(theContract, 'updateOrder', newOrder.orderId, JSON.stringify(newOrder));
+
 
 // createOrders(2000, 2010);
 
@@ -157,8 +165,13 @@ network.updateKeyValue(theContract, 'updateOrder', newOrder.orderId, JSON.string
 
 // saveOrderBatch(2057, 2156);
 
-// network.readKeyValue(theContract, 'readOrder', "1001");
+
+
+// order = JSON.parse(order);
+// let order1 = JSON.parse(order);
+// console.log(`This is the order quantity ${order.quantity}`);
 
 // const str = createOrderBatch(2000, 2010);
 // console.log(str);
 
+// read(newOrder.orderId);

@@ -13,9 +13,9 @@ const theContract = 'orders';
 
 const network = require('./network');
 
-const order = 
+let order = 
   {
-    'orderId': '1007',
+    'orderId': '1004',
     'docType': 'foodOrder',
     'despatchDate': '2019-09-20',
     'dateReceived': '2019-09-20',
@@ -44,7 +44,7 @@ const createOrderObject = (orderId) => {
   // console.log(`Order ID is ${orderId}`);
   let orderTemplate = 
   {
-    'orderId': '1003',
+    'orderId': '1004',
     'docType': 'foodOrder',
     'despatchDate': '2019-11-20',
     'dateReceived': '2019-11-22',
@@ -62,7 +62,7 @@ const createOrderObject = (orderId) => {
   let order = {};
   order = orderTemplate;
   order.orderId = orderId;
-  order.quantity = 899
+  order.quantity = 90210;
   // console.log(`Order ID is ${order.orderId}`);
   return order;
 }
@@ -138,6 +138,12 @@ const testy = async () => {
 
 }
 
+const read = async(order) => {
+  order = await network.readKeyValue(theContract, 'readOrder', order);
+  order = JSON.parse(order);
+  console.log(`This is the order quatity ${order.quantity}`);
+}
+
 /**
  * Test harness for displaying transaction history
  */
@@ -145,10 +151,14 @@ const testy = async () => {
 
 
 // network.keyExists(theContract, 'orderExists', '1001')  ;
+let newOrder = createOrderObject("1010");
+newOrder.quantity = 133;
+newOrder.processUsed = 'Very Smokey indeed';
+// network.createKeyValue(theContract, 'createOrder', newOrder.orderId, JSON.stringify(newOrder));
+// network.createOrder( newOrder.orderId, JSON.stringify(newOrder));
 
-network.createKeyValue(theContract, 'createOrder', order.orderId, JSON.stringify(order));
+network.updateKeyValue(theContract, 'updateOrder', newOrder.orderId, JSON.stringify(newOrder));
 
-// network.updateKeyValue(theContract, 'updateOrder', order.orderId, JSON.stringify(order));
 
 // createOrders(2000, 2010);
 
@@ -156,8 +166,13 @@ network.createKeyValue(theContract, 'createOrder', order.orderId, JSON.stringify
 
 // saveOrderBatch(2057, 2156);
 
-// network.readKeyValue(theContract, 'readOrder', "1001");
+
+
+// order = JSON.parse(order);
+// let order1 = JSON.parse(order);
+// console.log(`This is the order quantity ${order.quantity}`);
 
 // const str = createOrderBatch(2000, 2010);
 // console.log(str);
 
+// read(newOrder.orderId);

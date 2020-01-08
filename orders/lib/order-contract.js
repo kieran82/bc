@@ -114,7 +114,7 @@ class OrderContract extends Contract {
      * @param {The BatchId beyond the end of the search range i.e. not included in result} endId 
      */
     async getStateByRange(ctx, startId, endId) {
-        const exists = await this.batchFeedExists(ctx, startId);
+        const exists = await this.orderExists(ctx, startId);
 
         if (!exists) {
             throw new Error(`The Stock ID of ${startId} does not exist`);

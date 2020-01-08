@@ -158,7 +158,7 @@ exports.readKeyValue = async (contractName, func, keyID, ) => {
 
     // Submit the specified transaction.
     const result = await contract.evaluateTransaction(func, keyID);
-    console.log(`Transaction has been submitted:\n ${result}`);
+    // console.log(`Transaction has been submitted:\n ${result}`);
 
     // Disconnect from the gateway.
     await gateway.disconnect();
