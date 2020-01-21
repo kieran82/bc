@@ -15,12 +15,12 @@ const network = require('./network');
 
 let order = 
 {
-  orderId: '1001',
+  orderId: '1114',
   docType: 'foodOrder',
   despatchDate: '2020-01-10',
   dateReceived: '2020-01-10',
   buyerId: '0001',
-  supplierId: '1001',
+  supplierId: '1114',
   quantity: 750,
   qtyUnitMeasurement: 'Kg',
   processUsed: 'Smoking',
@@ -45,12 +45,12 @@ const createOrderObject = (orderId) => {
   // console.log(`Order ID is ${orderId}`);
   let orderTemplate = 
   {
-    orderId: '1001',
+    orderId: '1114',
     docType: 'foodOrder',
     despatchDate: '2020-01-10',
     dateReceived: '2020-01-10',
     buyerId: '0001',
-    supplierId: '1001',
+    supplierId: '1114',
     quantity: 750,
     qtyUnitMeasurement: 'Kg',
     processUsed: 'Smoking',
@@ -117,7 +117,7 @@ const saveOrderBatch = async (firstOrderId, lastOrderId) => {
 
 const testy = async () => {
 
-  const res = await network.getHistoryForKey(theContract, 'getHistoryForKey', '2003');
+  const res = await network.getHistoryForKey(theContract, 'getHistoryForKey', '1004');
 
   let allResults = '';
   const js = JSON.parse(res);
@@ -149,11 +149,11 @@ const read = async(order) => {
 /**
  * Test harness for displaying transaction history
  */
-testy();
+// testy();
 
 
-// network.keyExists(theContract, 'orderExists', '1001')  ;
-// let newOrder = createOrderObject("1010");
+// network.keyExists(theContract, 'orderExists', '1114')  ;
+let newOrder = createOrderObject("1114");
 // newOrder.quantity = 133;
 // newOrder.processUsed = 'Very Smokey indeed';
 // network.createKeyValue(theContract, 'createOrder', newOrder.orderId, JSON.stringify(newOrder));
@@ -164,7 +164,7 @@ testy();
 
 // createOrders(2000, 2010);
 
-// network.deleteKeyValue(theContract, 'deleteOrder','1001');
+// network.deleteKeyValue(theContract, 'deleteOrder','1114');
 
 // saveOrderBatch(2057, 2156);
 
@@ -177,4 +177,4 @@ testy();
 // const str = createOrderBatch(2000, 2010);
 // console.log(str);
 
-// read(newOrder.orderId);
+read(newOrder.orderId);
