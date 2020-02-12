@@ -18,7 +18,7 @@
     "license": "Apache-2.0",
     "dependencies": {
         "fabric-contract-api": "1.4.1",
-        "fabric-shim": "1.4.1",
+        "fabric-shim": "^2.0.0",
         "log4js": "^6.1.0",
         "node-stringbuilder": "^2.2.4"
     },
