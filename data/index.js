@@ -69,7 +69,8 @@ const main = () => {
   // });
   // Build a JSON object
   const order = helper.buildNewOrder();
-  console.log(order);
+  const json = JSON.stringify(order);
+  console.log(json);
 
   // console.log(order.transport.description);
 };

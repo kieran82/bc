@@ -31,7 +31,10 @@ exports.buildNewOrder = () => {
 
     const orderLine = factory.NewObject('orderLine');
 
-    orderLine.intakes.push(factory.NewObject('orderIntake'));
+    const orderIntake = factory.NewObject('orderIntake');
+    Object.assign(orderIntake.supplier, factory.NewObject('supplier'));
+
+    orderLine.intakes.push(orderIntake);
     orderLine.intakes.push(factory.NewObject('orderIntake'));
 
     order.lines.push(orderLine);
