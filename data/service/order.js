@@ -16,13 +16,13 @@ let deliveryNo = configSettings.deliverNo;
 let exportNo = configSettings.exportNo;
 let despatchDate = helper.getFormattedDate('2020-01-01');
 let deliverDate = helper.getFormattedDate('2020-01-05');
-let lidlAddress = configSettings.LidlAddress;
 let customers = configSettings.customers;
 
-const transport = configSettings.transport;
 let transportArrayPosition = 0;
 const numberOfCustomers = customers.length - 1; // for iterating over the array
 let customersArrayPosition = 0;
+let orderLineNumber = 1;
+let lineCountPosition = 0;
 
 const createCompanyOrder = company => {
   const order = helper.buildNewOrder();
@@ -74,8 +74,21 @@ const createTransport = order => {
   return order.transport;
 };
 
-const createOrderLine = () => {
-  const orderLine = helper.createOrderLine(dsd);
+const createOrderLines = order => {
+  const numberOfLinesToCreate = configSettings.lineCount[lineCountPosition];
+  // console.log(`Number of lines to create is ${numberOfLinesToCreate}`);
+  order.lines.shift();
+  console.log(order.lines.length);
+
+  let lineCounter = 1;
+
+  while (lineCounter <= numberOfLinesToCreate) {
+    const orderLine = helper.createOrderLine();
+    orderLine.lineId = lineCounter;
+    lineCounter++;
+    order.lines.push(orderLine);
+    // console.log(order.lines[lineCounter - 1]);
+  }
 };
 
 const createCustomer = company => {};
@@ -88,6 +101,19 @@ exports.createOrders = () => {
     order.customer = createCustomerAddress(company);
     order.address = createCustomerDestinationAddress(company);
     order.transport = createTransport(order);
+    order.lines.shift();
+
+    if (configSettings.lineCount[lineCountPosition] > 1) {
+      //add  some more order lines depending on the number in this position of the array
+      createOrderLines(order);
+      // console.log(order.lines[1]);
+    }
+
+    if (lineCountPosition > configSettings.lineCount.length) {
+      lineCountPosition = 0;
+    } else {
+      lineCountPosition++;
+    }
 
     console.log(order);
   });

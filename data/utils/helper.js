@@ -48,11 +48,8 @@ exports.buildNewOrder = () => {
   }
 };
 
-exports.createOrderLine = lineNumber => {
-  const orderLine = factory.NewObject('orderLine');
-  orderLine.lineID = lineNumber;
-
-  return orderLine;
+exports.createOrderLine = () => {
+  return factory.NewObject('orderLine');
 };
 
 exports.getFormattedDate = yyyymmdd => {

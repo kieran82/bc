@@ -32,7 +32,7 @@
     "Carrefour",
     "Mercadona"
   ],
-  "lineCount": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  "lineCount": [1, 2, 3, 4, 5, 1, 2, 5, 3],
   "intakeCount": [1, 2, 3, 2, 1, 2, 3, 1, 1],
   "transport": ["DHL", "TNT", "Murphy"],
   "transportDescription": ["DHL Express", "TNT", "Murphy Transport"],
@@ -40,6 +40,14 @@
   "deliveryNo": 300001,
   "orderNo": 10000000,
   "gln": 4006381333931,
+  "productBarCode": 5005000600120,
+  "caseBarCode": 5005000600120,
+  "commodityCode": "010101",
+  "customerProductCode": 100001,
+  "species": ["CRE", "CRB", "CRS", "ABS", "SAE", "SHF", "DIY"],
+  "weight": [100, 200, 300, 500, 800, 1300],
+  "vessels": ["IRL", "GB", "FRA", "E", "P"],
+  "vesselPrefix": ["000I", "00GB", "0FRA", "000E", "000P"],
 
   "LidlAddress": {
     "gln": 4006381333932,
