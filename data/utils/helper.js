@@ -47,3 +47,46 @@ exports.buildNewOrder = () => {
     console.log(error);
   }
 };
+
+exports.createOrderLine = lineNumber => {
+  const orderLine = factory.NewObject('orderLine');
+  orderLine.lineID = lineNumber;
+
+  return orderLine;
+};
+
+exports.getFormattedDate = yyyymmdd => {
+  try {
+    let date = new Date(yyyymmdd);
+    let day =
+      date.getDate() < 10
+        ? '0' + date.getDate().toString()
+        : date.getDate().toString();
+    const month =
+      date.getMonth() + 1 < 10
+        ? '0' + (date.getMonth() + 1)
+        : date.getMonth() + 1;
+    const year = date.getFullYear();
+    return day + '-' + month + '-' + year;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.getFormattedDateToday = () => {
+  try {
+    let date = new Date();
+    let day =
+      date.getDate() < 10
+        ? '0' + date.getDate().toString()
+        : date.getDate().toString();
+    const month =
+      date.getMonth() + 1 < 10
+        ? '0' + (date.getMonth() + 1)
+        : date.getMonth() + 1;
+    const year = date.getFullYear();
+    return day + '-' + month + '-' + year;
+  } catch (error) {
+    console.log(error);
+  }
+};

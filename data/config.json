@@ -1,4 +1,185 @@
 {
   "dropfolder": "/home/jerome/Documents/sftp/sdlm/out",
-  "ordersRequired": "100"
+  "ordersRequired": "100",
+  "companies": [
+    "Errigal",
+    "Daly",
+    "Whitby",
+    "SDLM",
+    "Shanagarry",
+    "Ocean Path"
+  ],
+  "suppliers": [
+    "Jack Jones",
+    "Tommy Hilfiger",
+    "Christian Dior",
+    "Ted Baker",
+    "Goode",
+    "Fred Gucci",
+    "DKNY",
+    "Prada",
+    "Giorgo Armani",
+    "Burberry",
+    "Calvin Klein",
+    "Ralph Lauren"
+  ],
+  "customers": [
+    "Lidl",
+    "Tesco",
+    "SuperValu",
+    "Aldi",
+    "Centra",
+    "Carrefour",
+    "Mercadona"
+  ],
+  "lineCount": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  "intakeCount": [1, 2, 3, 2, 1, 2, 3, 1, 1],
+  "transport": ["DHL", "TNT", "Murphy"],
+  "transportDescription": ["DHL Express", "TNT", "Murphy Transport"],
+  "exportNo": 300000001,
+  "deliveryNo": 300001,
+  "orderNo": 10000000,
+  "gln": 4006381333931,
+
+  "LidlAddress": {
+    "gln": 4006381333932,
+    "code": "L01A",
+    "name": "Lidl Distributionszentrum",
+    "adddress": "Lange Str. 28",
+    "town": "Berlin",
+    "zip": "10115",
+    "county": null,
+    "country": "Germany"
+  },
+  "SuperValuAddress": {
+    "gln": 4006381333933,
+    "code": "SV1A",
+    "name": "Musgrave",
+    "adddress": "Tramore Road",
+    "town": "Cork",
+    "zip": "T12F4G5",
+    "county": "Cork",
+    "country": "Ireland"
+  },
+  "TescoAddress": {
+    "gln": 4006381333934,
+    "code": "TE1A",
+    "name": "Tesco",
+    "adddress": "Tesco Ireland",
+    "town": "Dublin",
+    "zip": "T2123G",
+    "county": "Dublin",
+    "country": "Ireland"
+  },
+  "AldiAddress": {
+    "gln": 4006381333935,
+    "code": "AL1A",
+    "name": "Aldi Ireland",
+    "adddress": "Inchicore Road",
+    "town": "Dublin",
+    "zip": "T1F3G5",
+    "county": "Dublin",
+    "country": "Ireland"
+  },
+  "CentraAddress": {
+    "gln": 4006381333936,
+    "code": "CT1A",
+    "name": "Musgrave",
+    "adddress": "Tramore Road",
+    "town": "Cork",
+    "zip": "T12F4G5",
+    "county": "Cork",
+    "country": "Ireland"
+  },
+  "CarrefourAddress": {
+    "gln": 4006381333938,
+    "code": "FAC1A",
+    "name": "Carrefour",
+    "adddress": "Rue Saint Germain",
+    "town": " Boulogne-Billancourt",
+    "zip": "23112",
+    "county": null,
+    "country": "France"
+  },
+  "MercadonaAddress": {
+    "gln": 4006381333939,
+    "code": "FAC1A",
+    "name": "Mercadona",
+    "adddress": "Carrer Valencia, 5",
+    "town": " Tavernes Blanques, ",
+    "zip": "46016",
+    "county": null,
+    "country": "Spain"
+  },
+
+  "LidlLocationAddress": {
+    "gln": 4006381333932,
+    "code": "L01A",
+    "name": "Lidl Distributionszentrum",
+    "adddress": "Lange Str. 28",
+    "town": "Berlin",
+    "zip": "10115",
+    "county": null,
+    "country": "Germany"
+  },
+  "SuperValuLocationAddress": {
+    "gln": 4006381333933,
+    "code": "SV1A",
+    "name": "Musgrave",
+    "adddress": "Frankfield",
+    "town": "Cork",
+    "zip": "T12S2F3",
+    "county": "Cork",
+    "country": "Ireland"
+  },
+  "TescoLocationAddress": {
+    "gln": 4006381333934,
+    "code": "TE1A",
+    "name": "Tesco",
+    "adddress": "Wilton Shopping Centre",
+    "town": "Cork",
+    "zip": "T2123G",
+    "county": "Cork",
+    "country": "Ireland"
+  },
+  "AldiLocationAddress": {
+    "gln": 4006381333935,
+    "code": "AL1A",
+    "name": "Aldi Ireland",
+    "adddress": "Bishopstown Road",
+    "town": "Cork",
+    "zip": "T1F3G5",
+    "county": "Cork",
+    "country": "Ireland"
+  },
+  "CentraLocationAddress": {
+    "gln": 4006381333936,
+    "code": "CT1A",
+    "name": "Centra",
+    "adddress": "Bandon Road",
+    "town": "Cork",
+    "zip": "T12F1G5",
+    "county": "Cork",
+    "country": "Ireland"
+  },
+  "CarrefourLocationAddress": {
+    "gln": 4006381333938,
+    "code": "FAC1A",
+    "name": "Carrefour",
+    "adddress": "Rue Saint Germain",
+    "town": " Boulogne-Billancourt",
+    "zip": "23112",
+    "county": null,
+    "country": "France"
+  },
+  "MercadonaLocationAddress": {
+    "gln": 4006381333939,
+    "code": "FAC1A",
+    "name": "Mercadona",
+    "adddress": "Carrer Valencia, 5",
+    "town": " Tavernes Blanques, ",
+    "zip": "46016",
+    "county": null,
+    "country": "Spain"
+  }
 }
