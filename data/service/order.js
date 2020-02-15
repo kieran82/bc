@@ -23,6 +23,8 @@ const numberOfCustomers = customers.length - 1; // for iterating over the array
 let customersArrayPosition = 0;
 let orderLineNumber = 1;
 let lineCountPosition = 0;
+let intakeCountPosition = 0;
+let intakeNumber = configSettings.intakeNumber;
 
 const createCompanyOrder = company => {
   const order = helper.buildNewOrder();
@@ -78,13 +80,15 @@ const createOrderLines = order => {
   const numberOfLinesToCreate = configSettings.lineCount[lineCountPosition];
   // console.log(`Number of lines to create is ${numberOfLinesToCreate}`);
   order.lines.shift();
-  console.log(order.lines.length);
+  // console.log(order.lines.length);
 
   let lineCounter = 1;
 
   while (lineCounter <= numberOfLinesToCreate) {
     const orderLine = helper.createOrderLine();
     orderLine.lineId = lineCounter;
+    orderLine.intakes.shift();
+    orderLine.intakes = createIntakes();
     lineCounter++;
     order.lines.push(orderLine);
     // console.log(order.lines[lineCounter - 1]);
@@ -92,6 +96,29 @@ const createOrderLines = order => {
 };
 
 const createCustomer = company => {};
+
+const createIntakes = (order) => {
+  //Use the number found in this array to determine how many intake objects are to be created.
+  const numberOfIntakes = configSettings.intakeCount[intakeCountPosition];
+  const intakes = [];
+  let intakeCounter = 1;
+  intakeCountPosition++;
+  //Reset the position in the array back to zero if posintion value exceedds the length of the array
+  if (intakeCountPosition >= configSettings.intakeCount.length ) {
+    intakeCountPosition = 0;
+  }
+
+  while (intakeCounter <= numberOfIntakes ) {
+    let intake = helper.createOrderLineIntake();
+    intake.intakeNo = ++intakeNumber;
+    intakes.push(intake);
+    intakeCounter++;
+  }
+  // console.log(intakes);
+  
+  return intakes;
+
+}
 
 exports.createOrders = () => {
   // read and use array of company names from the config file
@@ -106,8 +133,10 @@ exports.createOrders = () => {
     if (configSettings.lineCount[lineCountPosition] > 1) {
       //add  some more order lines depending on the number in this position of the array
       createOrderLines(order);
-      // console.log(order.lines[1]);
+      // console.log(order.lines[1].intakes);
     }
+
+    
 
     if (lineCountPosition > configSettings.lineCount.length) {
       lineCountPosition = 0;
@@ -115,6 +144,6 @@ exports.createOrders = () => {
       lineCountPosition++;
     }
 
-    console.log(order);
+    console.log(JSON.stringify(order));
   });
 };
