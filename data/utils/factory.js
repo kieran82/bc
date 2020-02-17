@@ -8,6 +8,7 @@ const Address = require('../classes/address');
 const OrderLine = require('../classes/orderLine');
 const OrderIntake = require('../classes/orderIntake');
 const Supplier = require('../classes/supplier');
+const OrderDates = require('../classes/orderDates');
 
 const objNameArray = [
   'transport',
@@ -17,7 +18,8 @@ const objNameArray = [
   'address',
   'orderline',
   'orderintake',
-  'supplier'
+  'supplier',
+  'orderDates'
 ];
 const objArray = [];
 
@@ -29,6 +31,7 @@ objArray.push(Address);
 objArray.push(OrderLine);
 objArray.push(OrderIntake);
 objArray.push(Supplier);
+objArray.push(OrderDates);
 
 // Create the object template
 
@@ -39,7 +42,7 @@ objArray.push(Supplier);
 // exports.Address = new Address();
 // exports.OrderLine = new OrderLine();
 // exports.OrderIntake = new OrderIntake();
-// exports.Supplier = new Supplier();
+exports.OrderDates = new OrderDates();
 
 exports.NewObject = object => {
   const objectName = object.toString().toLowerCase();

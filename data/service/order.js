@@ -117,6 +117,10 @@ const createIntakes = () => {
   //Use the number found in this array to determine how many intake objects are to be created.
   const numberOfIntakes = configSettings.intakeCount[intakeCountPosition];
   const intakes = [];
+  const startDate = new Date(new Date().getTime() - helper.MSPERDAY * 5);
+  console.log(startDate);
+
+  const orderDates = helper.createOrderRelatedDates(startDate);
   let intakeCounter = 1;
   intakeCountPosition++;
   //Reset the position in the array back to zero if position value exceeds the length of the array
@@ -125,9 +129,10 @@ const createIntakes = () => {
   }
 
   while (intakeCounter <= numberOfIntakes) {
-    const intake = helper.createOrderLineIntake();
+    const intake = helper.createOrderLineIntake(startDate);
     intake.intakeNo = ++intakeNumber;
     intake.supplier = createSupplier();
+    // intake.intakeDate = orderDates.intakeDate;
     // console.log(intake.supplier);
 
     intakes.push(intake);

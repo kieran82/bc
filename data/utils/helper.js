@@ -1,18 +1,21 @@
 'use strict';
 
 const factory = require('./factory');
+const MSPERDAY = 86400;
 
-// this.company = 'GLN of Errigal';
-// this.exportNo = '200001';
-// this.deliveryNo = '30001';
-// this.orderNo = 'MS100007';
-// this.despatchDate = '2019-11-25';
-// this.deliveryDate = '2019-11-26';
-// this.warehouse = {};
-// this.customer = {};
-// this.address = {};
-// this.transport = {};
-// this.lines = [];
+exports.MSPERDAY = MSPERDAY;
+
+// orderDate.company = 'GLN of Errigal';
+// orderDate.exportNo = '200001';
+// orderDate.deliveryNo = '30001';
+// orderDate.orderNo = 'MS100007';
+// orderDate.despatchDate = '2019-11-25';
+// orderDate.deliveryDate = '2019-11-26';
+// orderDate.warehouse = {};
+// orderDate.customer = {};
+// orderDate.address = {};
+// orderDate.transport = {};
+// orderDate.lines = [];
 
 exports.buildNewOrder = () => {
   try {
@@ -56,6 +59,25 @@ exports.createOrderLineIntake = () => {
   return factory.NewObject('orderintake');
 };
 
+/***
+ * param : startDate is type Date
+ *
+ * For test data creation, this date represents the landing date. All other dates can be created
+ * on either side of this date e.g. catch date will be earlier than landing date, intake date
+ * will be greater than or equal to the landing date. A despatch date will be earlier than a
+ * proposed delivery date.
+ */
+exports.createOrderRelatedDates = landingDate => {
+  const orderDate = factory.OrderDates; //factory.NewObject('orderDates');
+
+  orderDate.despatchDate = new Date(landingDate.getTime(MSPERDAY * 2));
+  orderDate.deliveryDate = new Date(landingDate.getTime(MSPERDAY * 3));
+  orderDate.catchDate = new Date(landingDate.getTime(MSPERDAY * 5));
+  orderDate.landingDate = landingDate;
+  orderDate.intakeDate = new Date(landingDate.getTime(MSPERDAY * 1));
+
+  return orderDate;
+};
 exports.createSupplier = () => {
   return factory.NewObject('supplier');
 };
