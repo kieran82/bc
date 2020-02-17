@@ -56,6 +56,10 @@ exports.createOrderLineIntake = () => {
   return factory.NewObject('orderintake');
 };
 
+exports.createSupplier = () => {
+  return factory.NewObject('supplier');
+};
+
 exports.getFormattedDate = yyyymmdd => {
   try {
     let date = new Date(yyyymmdd);

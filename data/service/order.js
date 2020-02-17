@@ -17,6 +17,7 @@ let exportNo = configSettings.exportNo;
 let despatchDate = helper.getFormattedDate('2020-01-01');
 let deliverDate = helper.getFormattedDate('2020-01-05');
 let customers = configSettings.customers;
+let supplierPosition = 0;
 
 let transportArrayPosition = 0;
 const numberOfCustomers = customers.length - 1; // for iterating over the array
@@ -39,7 +40,7 @@ const createCompanyOrder = company => {
   return order;
 };
 
-const createCustomerAddress = company => {
+const createCustomerAddress = () => {
   if (customersArrayPosition > numberOfCustomers) {
     customersArrayPosition = 0;
   }
@@ -47,7 +48,7 @@ const createCustomerAddress = company => {
   return configSettings[customers[customersArrayPosition++] + 'Address'];
 };
 
-const createCustomerDestinationAddress = company => {
+const createCustomerDestinationAddress = () => {
   if (customersArrayPosition > numberOfCustomers) {
     customersArrayPosition = 0;
   }
@@ -95,30 +96,47 @@ const createOrderLines = order => {
   }
 };
 
-const createCustomer = company => {};
+const createSupplier = () => {
+  const supplier = helper.createSupplier();
+  //Add in the different values from the various suppliers arrays
+  supplier.gln = configSettings.supplierGln[supplierPosition];
+  supplier.name = configSettings.suppliers[supplierPosition];
+  supplier.code = configSettings.supplierCode[supplierPosition];
+  supplier.address = configSettings.supplierAddress[supplierPosition];
+  supplier.town = configSettings.supplierTown[supplierPosition];
+  supplier.county = configSettings.supplierCounty[supplierPosition];
+  supplierPosition =
+    supplierPosition >= configSettings.suppliers.length - 1
+      ? 0
+      : ++supplierPosition;
 
-const createIntakes = (order) => {
+  return supplier;
+};
+
+const createIntakes = () => {
   //Use the number found in this array to determine how many intake objects are to be created.
   const numberOfIntakes = configSettings.intakeCount[intakeCountPosition];
   const intakes = [];
   let intakeCounter = 1;
   intakeCountPosition++;
-  //Reset the position in the array back to zero if posintion value exceedds the length of the array
-  if (intakeCountPosition >= configSettings.intakeCount.length ) {
+  //Reset the position in the array back to zero if position value exceeds the length of the array
+  if (intakeCountPosition >= configSettings.intakeCount.length) {
     intakeCountPosition = 0;
   }
 
-  while (intakeCounter <= numberOfIntakes ) {
-    let intake = helper.createOrderLineIntake();
+  while (intakeCounter <= numberOfIntakes) {
+    const intake = helper.createOrderLineIntake();
     intake.intakeNo = ++intakeNumber;
+    intake.supplier = createSupplier();
+    // console.log(intake.supplier);
+
     intakes.push(intake);
     intakeCounter++;
   }
   // console.log(intakes);
-  
-  return intakes;
 
-}
+  return intakes;
+};
 
 exports.createOrders = () => {
   // read and use array of company names from the config file
@@ -136,14 +154,12 @@ exports.createOrders = () => {
       // console.log(order.lines[1].intakes);
     }
 
-    
-
-    if (lineCountPosition > configSettings.lineCount.length) {
+    if (lineCountPosition >= configSettings.lineCount.length - 1) {
       lineCountPosition = 0;
     } else {
       lineCountPosition++;
     }
 
-    console.log(JSON.stringify(order));
+    console.log(JSON.stringify(order.lines[0].intakes[0]));
   });
 };
