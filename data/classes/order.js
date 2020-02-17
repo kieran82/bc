@@ -12,6 +12,7 @@ module.exports = class Order {
     this.customer = {};
     this.address = {};
     this.transport = {};
+    this.orderDates = {};
     this.lines = [];
   }
 };

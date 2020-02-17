@@ -1,7 +1,7 @@
 'use strict';
 
 const factory = require('./factory');
-const MSPERDAY = 86400;
+const MSPERDAY = 24 * 60 * 60 * 1000; //  86400;
 
 exports.MSPERDAY = MSPERDAY;
 
@@ -25,12 +25,23 @@ exports.buildNewOrder = () => {
     order.exportNo = '13232';
     order.deliveryNo = '0000198';
     order.orderNo = 'MS000009876';
-    order.despatchDate = '2020-02-04';
-    order.deliveryDate = '2020-02-06';
+    // order.despatchDate = '2020-02-04';
+    // order.deliveryDate = '2020-02-06';
     Object.assign(order.warehouse, factory.NewObject('warehouse'));
     Object.assign(order.customer, factory.NewObject('customer'));
     Object.assign(order.address, factory.NewObject('address'));
     Object.assign(order.transport, factory.NewObject('transport'));
+    const orderDate = factory.NewObject('orderDates');
+
+    orderDate.despatchDate = new Date(Date.now() + -4 * MSPERDAY);
+    orderDate.deliveryDate = new Date(Date.now() + -3 * MSPERDAY);
+    orderDate.catchDate = new Date(Date.now() + -3 * MSPERDAY);
+    orderDate.landingDate = new Date(Date.now() + -1 * MSPERDAY);
+    orderDate.intakeDate = new Date(Date.now() + -20 * MSPERDAY);
+
+    Object.assign(order.orderDates, orderDate);
+    order.despatchDate = order.orderDates.despatchDate;
+    order.deliveryDate = order.orderDates.deliveryDate;
 
     const orderLine = factory.NewObject('orderLine');
 
@@ -68,16 +79,20 @@ exports.createOrderLineIntake = () => {
  * proposed delivery date.
  */
 exports.createOrderRelatedDates = landingDate => {
-  const orderDate = factory.OrderDates; //factory.NewObject('orderDates');
+  const orderDate = factory.NewObject('orderDates');
 
-  orderDate.despatchDate = new Date(landingDate.getTime(MSPERDAY * 2));
-  orderDate.deliveryDate = new Date(landingDate.getTime(MSPERDAY * 3));
-  orderDate.catchDate = new Date(landingDate.getTime(MSPERDAY * 5));
-  orderDate.landingDate = landingDate;
-  orderDate.intakeDate = new Date(landingDate.getTime(MSPERDAY * 1));
+  orderDate.despatchDate = new Date(Date.now() + -184 * MSPERDAY);
+  orderDate.deliveryDate = new Date(Date.now() + -182 * MSPERDAY);
+  orderDate.catchDate = new Date(Date.now() + -200 * MSPERDAY);
+  orderDate.landingDate = new Date(Date.now() + -190 * MSPERDAY);
+  orderDate.intakeDate = new Date(Date.now() + -189 * MSPERDAY);
+  console.log(`This millisecond count ${MSPERDAY}`);
+
+  console.log(orderDate.despatchDate);
 
   return orderDate;
 };
+
 exports.createSupplier = () => {
   return factory.NewObject('supplier');
 };

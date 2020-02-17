@@ -19,7 +19,7 @@ const objNameArray = [
   'orderline',
   'orderintake',
   'supplier',
-  'orderDates'
+  'orderdates'
 ];
 const objArray = [];
 
@@ -42,7 +42,7 @@ objArray.push(OrderDates);
 // exports.Address = new Address();
 // exports.OrderLine = new OrderLine();
 // exports.OrderIntake = new OrderIntake();
-exports.OrderDates = new OrderDates();
+// exports.OrderDates = new OrderDates();
 
 exports.NewObject = object => {
   const objectName = object.toString().toLowerCase();

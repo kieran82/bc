@@ -89,7 +89,7 @@ const createOrderLines = order => {
     const orderLine = helper.createOrderLine();
     orderLine.lineId = lineCounter;
     orderLine.intakes.shift();
-    orderLine.intakes = createIntakes();
+    orderLine.intakes = createIntakes(order);
     lineCounter++;
     order.lines.push(orderLine);
     // console.log(order.lines[lineCounter - 1]);
@@ -113,12 +113,12 @@ const createSupplier = () => {
   return supplier;
 };
 
-const createIntakes = () => {
+const createIntakes = order => {
   //Use the number found in this array to determine how many intake objects are to be created.
   const numberOfIntakes = configSettings.intakeCount[intakeCountPosition];
   const intakes = [];
   const startDate = new Date(new Date().getTime() - helper.MSPERDAY * 5);
-  console.log(startDate);
+  // console.log(startDate);
 
   const orderDates = helper.createOrderRelatedDates(startDate);
   let intakeCounter = 1;
@@ -130,10 +130,13 @@ const createIntakes = () => {
 
   while (intakeCounter <= numberOfIntakes) {
     const intake = helper.createOrderLineIntake(startDate);
+    intake.intakeDate = order.orderDates.intakeDate;
+    intake.catchDate = order.orderDates.catchDate;
+    intake.landingDate = order.orderDates.landingDate;
     intake.intakeNo = ++intakeNumber;
     intake.supplier = createSupplier();
     // intake.intakeDate = orderDates.intakeDate;
-    // console.log(intake.supplier);
+    // console.log(orderDates.intakeDate);
 
     intakes.push(intake);
     intakeCounter++;
