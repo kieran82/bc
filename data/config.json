@@ -120,6 +120,11 @@
   "vessels": ["IRL", "GB", "FRA", "E", "P"],
   "vesselPrefix": ["000I", "00GB", "0FRA", "000E", "000P"],
   "startDate": "01-01-2020",
+  "despatchDaysFromNow": 385,
+  "deliveryDaysFromNow": 380,
+  "catchDaysFromNow": 400,
+  "landingDaysFromNow": 390,
+  "intakeDaysFromNow": 380,
 
   "LidlAddress": {
     "gln": 4006381333932,

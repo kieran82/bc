@@ -1,0 +1,118 @@
+({
+  "data": {
+    "devices": [
+      {
+        "device_id": 0,
+        "gps": {
+          "longitude": -9.902741432189941,
+          "latitude": 51.64982223510742
+        },
+        "sensors": [
+          { "reading": 0.0, "type_id": 0, "type": "TEMP" },
+          { "reading": 0.0, "type_id": 1, "type": "PH" },
+          { "reading": 0.0, "type_id": 2, "type": "DISSOLVED OXYGEN" },
+          {
+            "reading": 11.850000381469727,
+            "type_id": 3,
+            "type": "BATTERY VOLTAGE"
+          },
+          { "reading": 0, "type_id": 4, "type": "DAYLIGHT START" },
+          { "reading": 0, "type_id": 5, "type": "DAYLIGHT END" },
+          {
+            "reading": 11.979999542236328,
+            "type_id": 6,
+            "type": "SOLAR VOLTAGE"
+          }
+        ]
+      },
+      {
+        "device_id": 2,
+        "gps": { "longitude": 0.0, "latitude": 0.0 },
+        "sensors": [
+          { "reading": 5.460999965667725, "type_id": 0, "type": "TEMP" },
+          { "reading": 0.0, "type_id": 1, "type": "PH" },
+          {
+            "reading": 9.229999542236328,
+            "type_id": 2,
+            "type": "DISSOLVED OXYGEN"
+          },
+          {
+            "reading": 12.308526992797852,
+            "type_id": 3,
+            "type": "BATTERY VOLTAGE"
+          },
+          { "reading": 0, "type_id": 4, "type": "DAYLIGHT START" },
+          { "reading": 0, "type_id": 5, "type": "DAYLIGHT END" },
+          {
+            "reading": 1.6765120029449463,
+            "type_id": 6,
+            "type": "SOLAR VOLTAGE"
+          }
+        ]
+      }
+    ],
+    "version": 0,
+    "timestamp": 1582013268
+  },
+  "success": true,
+  "gateway": "01290219SKY89D4"
+},
+{
+  "data": {
+    "devices": [
+      {
+        "device_id": 0,
+        "gps": {
+          "longitude": -9.902741432189941,
+          "latitude": 51.64982223510742
+        },
+        "sensors": [
+          { "reading": 0.0, "type_id": 0, "type": "TEMP" },
+          { "reading": 0.0, "type_id": 1, "type": "PH" },
+          { "reading": 0.0, "type_id": 2, "type": "DISSOLVED OXYGEN" },
+          {
+            "reading": 11.850000381469727,
+            "type_id": 3,
+            "type": "BATTERY VOLTAGE"
+          },
+          { "reading": 0, "type_id": 4, "type": "DAYLIGHT START" },
+          { "reading": 0, "type_id": 5, "type": "DAYLIGHT END" },
+          {
+            "reading": 11.979999542236328,
+            "type_id": 6,
+            "type": "SOLAR VOLTAGE"
+          }
+        ]
+      },
+      {
+        "device_id": 2,
+        "gps": { "longitude": 0.0, "latitude": 0.0 },
+        "sensors": [
+          { "reading": 5.460999965667725, "type_id": 0, "type": "TEMP" },
+          { "reading": 0.0, "type_id": 1, "type": "PH" },
+          {
+            "reading": 9.229999542236328,
+            "type_id": 2,
+            "type": "DISSOLVED OXYGEN"
+          },
+          {
+            "reading": 12.308526992797852,
+            "type_id": 3,
+            "type": "BATTERY VOLTAGE"
+          },
+          { "reading": 0, "type_id": 4, "type": "DAYLIGHT START" },
+          { "reading": 0, "type_id": 5, "type": "DAYLIGHT END" },
+          {
+            "reading": 1.6765120029449463,
+            "type_id": 6,
+            "type": "SOLAR VOLTAGE"
+          }
+        ]
+      }
+    ],
+    "version": 0,
+    "timestamp": 1582013268
+  },
+  "success": true,
+  "gateway": "01290219SKY89D4"
+})

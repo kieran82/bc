@@ -3,12 +3,13 @@
 const fs = require('fs');
 const path = require('path');
 const helper = require('../utils/helper');
+const OrderDays = require('../classes/orderDay');
 
-const configPath = path.join(process.cwd(), './config.json');
+// const configPath = path.join(process.cwd(), './config.json');
 
-const configJSON = fs.readFileSync(configPath, 'utf8');
-const configSettings = JSON.parse(configJSON);
-
+// const configJSON = fs.readFileSync(configPath, 'utf8');
+// const configSettings = JSON.parse(configJSON);
+const configSettings = require('../classes/configSettings').configSettings;
 const companies = configSettings.companies;
 let gln = configSettings.gln;
 let orderNo = configSettings.orderNo;
@@ -34,8 +35,8 @@ const createCompanyOrder = company => {
   order.deliveryNo = --deliveryNo;
   order.orderNo =
     company.substring(0, 2).toUpperCase() + (--orderNo).toString();
-  order.despatchDate = despatchDate;
-  order.deliverDate = deliverDate;
+  order.despatchDate = order.orderDates.despatchDate;
+  order.deliverDate = order.orderDates.deliverDate;
 
   return order;
 };
@@ -168,6 +169,15 @@ exports.createOrders = () => {
       lineCountPosition++;
     }
 
-    console.log(JSON.stringify(order.lines[0].intakes[0]));
+    console.log(JSON.stringify(order));
   });
+
+  // const od = helper.createOrderDays();
+
+  // console.log(OrderDays.getdespatchDaysFromNow());
+  // console.log(OrderDays.getDeliveryDaysFromNow());
+  // console.log(OrderDays.getIntakeDaysFromNow());
+  // console.log(OrderDays.getLandingDaysFromNow());
+  // console.log(OrderDays.getCatchDaysFromNow());
+  // console.log(OrderDays.getdespatchDaysFromNow());
 };

@@ -9,6 +9,7 @@ const OrderLine = require('../classes/orderLine');
 const OrderIntake = require('../classes/orderIntake');
 const Supplier = require('../classes/supplier');
 const OrderDates = require('../classes/orderDates');
+const OrderDays = require('../classes/orderDay');
 
 const objNameArray = [
   'transport',
@@ -19,7 +20,8 @@ const objNameArray = [
   'orderline',
   'orderintake',
   'supplier',
-  'orderdates'
+  'orderdates',
+  'orderdays'
 ];
 const objArray = [];
 
@@ -32,6 +34,7 @@ objArray.push(OrderLine);
 objArray.push(OrderIntake);
 objArray.push(Supplier);
 objArray.push(OrderDates);
+objArray.push(OrderDays);
 
 // Create the object template
 
