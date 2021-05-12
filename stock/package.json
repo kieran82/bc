@@ -20,7 +20,7 @@
         "fabric-contract-api": "1.4.1",
         "fabric-network": "^1.4.4",
         "fabric-shim": "1.4.1",
-        "grpc": "^1.22.2",
+        "grpc": "^1.24.9",
         "node-stringbuilder": "^2.2.4"
     },
     "devDependencies": {
