@@ -12,6 +12,6 @@
     "node-stringbuilder": "^2.2.4"
   },
   "devDependencies": {
-    "log4js": "^6.1.2"
+    "log4js": "^6.4.0"
   }
 }
